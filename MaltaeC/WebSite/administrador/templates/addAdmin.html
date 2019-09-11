@@ -1,0 +1,125 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">~
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+	<!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/administrador/manage.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+	{% include "users/common/header.html" %}
+	<section id="weird-header-section-fix-of-precious-group-fix">
+	</section>
+	
+	<!--Conteudo da Pagina dentro de Info ...-->
+	<div class="info">
+        <h1 class="tituloAdmin">Administração</h1>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/mudarCarousel','self');">Alterar Imgs. Pág. Inicial</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/manage','self');">Novos Utilizadores</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/utilizadores/registo','self');">Registar Novo Utilizador</button>
+			<button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/reprovados','self');">Reprovados</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/desbanirUser','self');">Emails banidos</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/allUsers','self');">Todos os Utilizadores</button>
+            {% if user.is_superuser %}
+                <button type="button" class="btn btn-large btn-warning" onclick="window.open('/administrador/addAdmin','self');">Adicionar Admin</button>
+            {% endif %}
+        </div>
+        <hr class="linhaDivisao">
+
+
+        <div class="row containerPagina">
+                <!--------------------------------------->
+                <div class="row">
+
+                    {% if sucessoMsg %}
+                        <h2 class="subDivTitulo" style="color:green;">{{ sucessoMsg }}</h2>
+                    {% elif erroMsg %}
+                        <h2 class="subDivTitulo" style="color:red;">{{ erroMsg }}</h2>
+                    {% endif %}
+
+                    <h2 class="subDivTitulo">Registar Novo Admin</h2>
+
+                    <div class="row">
+                        <form id="regAdminForm" action="" method="post" role="form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="nomw">Nome:</label>
+                                <input type="text" class="form-control" name="nome" id="nome" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="nomw">Telefone:</label>
+                                <input type="text" class="form-control" name="telefone" id="telefone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Password:</label>
+                                <input type="password" minlength="8" class="form-control" name="pwd" id="pwd" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd">Confirmar password:</label>
+                                <input type="password" minlength="8" class="form-control" name="cpwd" id="cpwd" required>
+                            </div>
+                            <button type="submit" class="btn btn-success">Registar</button>
+                        </form>
+                    </div>
+
+                </div>
+                <!--------------------------------------->
+        </div>
+
+
+    </div>
+	{% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+
+
+
+</html>
+
+
+
+
+
+
+

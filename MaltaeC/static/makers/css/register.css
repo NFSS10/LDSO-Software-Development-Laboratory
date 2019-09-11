@@ -1,0 +1,321 @@
+.container {
+    margin: 0 !important;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+section#register-section {
+    padding-top: 80px;
+}
+
+.panel-login {
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
+
+.panel-login > .panel-heading {
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align: center;
+}
+
+.panel-login > .panel-heading a {
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-login > .panel-heading a.active {
+    color: #FFCD24;
+    font-size: 18px;
+}
+
+.panel-login > .panel-heading hr {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -ms-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0));
+}
+
+.panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    padding-left: 38px;
+}
+
+.panel-login input:hover,
+.panel-login input:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+
+.btn-login {
+    background-color: #8CB8CA;
+    color: white;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+    background-color: #FFCD24;
+    color: white;
+    border-color: #53A3CD;
+}
+
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+
+.forgot-password:hover,
+.forgot-password:focus {
+    text-decoration: underline;
+    color: #666;
+}
+
+.btn-register {
+    background-color: #8CB8CA;
+    color: white;
+    outline: none;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #FFCD24;
+}
+
+.btn-register:hover,
+.btn-register:focus {
+    background-color: #FFCD24;
+    color: white;
+    border-color: #FFCD24;
+
+}
+
+i.register-icons {
+
+    position: relative;
+    top: 32px;
+    left: 10px;
+}
+
+.toggle-button {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+}
+
+.toggle-button label {
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+}
+
+.toggle-button input {
+    display: none;
+}
+
+.toggle-button__icon {
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.toggle-button__icon:before, .toggle-button__icon:after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 35%;
+    transition: 0.2s ease-out;
+}
+
+.toggle-button--vesi label {
+    font-size: 10px;
+    height: 30px;
+    line-height: 30px;
+    transition: all 0.2s;
+    border-radius: 2rem;
+}
+
+.toggle-button--vesi label:before, .toggle-button--vesi label:after {
+    position: absolute;
+    right: 1.5rem;
+    transition: all 0.2s .15s ease-out;
+}
+
+.toggle-button--vesi label:before {
+    content: attr(data-on-text);
+}
+
+.toggle-button--vesi label:after {
+    content: attr(data-off-text);
+}
+
+.toggle-button--vesi input[type=checkbox] + label {
+    width: 170px;
+    background: #666;
+}
+
+.toggle-button--vesi input[type=checkbox] + label:before {
+    opacity: 0;
+    transform: translate(0, 20px);
+}
+
+.toggle-button--vesi input[type=checkbox] + label:after {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.category_maker input[type=checkbox]:checked ~ label {
+    background: rgba(87, 140, 169, 0.8);
+}
+
+.category_creator input[type=checkbox]:checked ~ label {
+    background: rgba(243, 207, 85, 0.8);
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ label:before {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ label:after {
+    opacity: 0;
+    transform: translate(0, -20px);
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ .toggle-button__icon:before {
+    transform: translate(40%, 15%) rotate(45deg);
+    width: 10px;
+}
+
+.toggle-button--vesi input[type=checkbox]:checked ~ .toggle-button__icon:after {
+    transform: translate(60%, -20%) rotate(-45deg);
+}
+
+.toggle-button--vesi .toggle-button__icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 30px;
+    width: 30px;
+}
+
+.toggle-button--vesi .toggle-button__icon:before, .toggle-button--vesi .toggle-button__icon:after {
+    height: 3px;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button--vesi .toggle-button__icon:before {
+    width: 15px;
+    transform: rotate(90deg);
+}
+
+.toggle-button--vesi .toggle-button__icon:after {
+    width: 15px;
+    transform: rotate(0);
+}
+
+.editForm{
+
+	margin= 0px;
+}
+.editForm,
+#username-maker,
+#email-maker,
+#password-maker,
+#password-confirm-maker,
+#phone-maker,
+#address-maker {
+    padding-left: 45px;
+}
+
+#maker-form > section {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#maker-form > section > h3 {
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+#maker-form > section > div {
+    margin: 5px;
+}
+
+#register-section > div > div > div.col-xs-12.col-offset-6.title.text-center > h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+#maker-form > section > h3.section-heading {
+    margin-top: 25px;
+}
+
+.panel-heading {
+    margin-top: 20px;
+}
+
+/* Mapa Registo */
+
+#map-register {
+    height: 400px;
+    width: 100%;
+    margin: 20px 0 50px 0;
+}
+.controls-map {
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    font-family: "Work Sans";
+    font-size: 15px;
+    font-weight: 300;
+    height: 29px;
+    margin-left: 17px;
+    margin-top: 10px;
+    outline: none;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+#pac-input{
+    height: 31px;
+}
+
+.controls-map:focus {
+    border-color: #4d90fe;
+}

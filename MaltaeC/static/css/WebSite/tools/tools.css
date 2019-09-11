@@ -1,0 +1,140 @@
+@font-face {
+    font-family: "encodeSans";
+    src: url(../../../users/fonts/EncodeSans-Bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "encodeSans-thin";
+    src: url(../../../users/fonts/EncodeSans-Light.ttf) format("truetype");
+}
+.container
+{
+	margin: 0 auto;
+}
+
+.artesaoLink
+{
+	display: block;
+	font-size: 16px;
+  	color: #000000;
+  	background: #ffffff;
+  	border: solid #000000 1px;
+  	text-decoration: none;
+	min-height: 30px;
+	padding-top: 3px;
+}
+
+.artesaoLink:hover
+{
+	background: #f0f0f0;
+	text-decoration: none;
+}
+
+
+.artesaoLinkNome
+{
+	display: inline-block;
+	min-width: 200px;
+	max-width: 200px;
+}
+
+.artesaoLinkEmail
+{
+	display: inline-block;
+	min-width: 200px;
+	max-width: 200px;
+}
+
+.artesaoLinkCategoria
+{
+	display: inline-block;
+	min-width: 100px;
+	max-width: 100px;
+}
+
+
+
+
+
+
+
+
+.barraPesquisa
+{
+	margin: 0 auto;
+	max-width: 720px;
+}
+
+#toolContainer{
+	margin: 0 auto;
+	width: 80%;
+}
+
+#toolContainer h1{
+font-family:"encodeSans-thin";
+}
+
+
+
+.artesaoVermelho:hover img{background-color:rgba(255,0,0,0.3);}
+.criativoAzul:hover:after{background-color:rgba(0,0,255,0.3);}
+
+
+
+/*! CSS Used from: https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/cache/comet-cache/htmlc/public/www-thenewcraftsmen-com/4/f/a/5/9/db067344b2226867767dc9a93733649a-compressor-part.css?iv=345 */
+.v-center{position:absolute;top:50%;transform:translateY(-50%);-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);}
+info *{margin:0;padding:0;}
+info *,*:before,*:after{box-sizing:inherit;}
+img{border:0;display:block;outline:none;-ms-interpolation-mode:bicubic;max-width:100%;height:auto;}
+a img{outline:none;}
+h3{font-weight:normal;}
+a{text-decoration:none;outline:none;color:inherit;cursor:pointer;}
+::-webkit-input-placeholder{color:#FFF;}
+:-moz-placeholder{color:#FFF;}
+::-moz-placeholder{color:#FFF;}
+:-ms-input-placeholder{color:#FFF;}
+.banner{position:relative;color:#FFF;overflow:hidden;}
+.banner img{width:100%;height:auto;}
+.banner:after{content:'';position:absolute;top:0;bottom:0;left:0;right:0;background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.15);z-index:1;opacity:0;pointer-events:none;}
+.banner:hover:after{opacity:1;}
+.banner:hover .banner-caption{opacity:1;}
+.banner-caption{font-family:"encodeSans";font-size:18px;left:5%;right:5%;margin:auto;letter-spacing:0.075em;text-align:center;z-index:2;opacity:0;width:90%;}
+.banner-caption h3{font-family:inherit;font-size:21px;text-transform:uppercase;line-height:1.5;font-family:"encodeSans";letter-spacing:0.1em;}
+.banner-caption .link{position:relative;text-transform:uppercase;display:inline-block;font-size:18px;line-height:1.8;}
+.banner-caption .link:after{position:absolute;bottom:0;left:0;right:0;height:1px;background-color:#FFF;content:'';}
+.banner-no-image .banner-caption{opacity:1;}
+.banner-no-image:after{opacity:1;}
+.banner-no-image:hover:after{background-color:rgba(0,0,0,0.3);}
+.tool-listing{margin:0 auto;}
+.no-touchevents .tool-listing .banner img{-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%);-ms-filter:grayscale(100%);-o-filter:grayscale(100%);filter:grayscale(100%);}
+.no-touchevents .tool-listing .banner:hover img{-webkit-filter:grayscale(0%);-moz-filter:grayscale(0%);-ms-filter:grayscale(0%);-o-filter:grayscale(0%);filter:grayscale(0%);}
+.tool-listing .banner-caption .link{line-height:normal;}
+.tool-listing .banner-caption .link:after{display:none;}
+.tool-listing .banner{width:100%;padding:10px;background:transparent;display:inline-block;}
+.tool-listing .banner:after{top:10px;left:10px;bottom:10px;right:10px;}
+.banner-caption,.banner:after{-webkit-transition:opacity 0.3s ease-out;transition:opacity 0.3s ease-out;}
+@media only screen and (max-width : 1024px){
+.banner-caption{font-size:11px;}
+.banner-caption h3{font-size:14px;}
+.banner-caption .link{font-size:12px;}
+}
+@media only screen and (max-width: 768px){
+.banner-caption h3{font-size:13px;}
+.tool-listing .banner{width:50%;}
+}
+/*! CSS Used fontfaces */
+@font-face{font-family:"Gill Sans W01 Book";src:url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/2cebe80c-b289-4ae0-a3b0-baa82c6c6e10.eot?iv=345#iefix);src:url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/2cebe80c-b289-4ae0-a3b0-baa82c6c6e10.eot?iv=345#iefix) format("eot"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/51318b0e-57fc-4136-b7d1-46aee6c2b565.woff2) format("woff2"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/2bc69477-90c2-4415-a51f-36e36eee3d5e.woff?iv=345) format("woff"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/33447d8d-d920-48e7-b0a9-1d3dda80d6a6.ttf?iv=345) format("truetype"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/e49c440c-7653-44ce-96d2-f775947ba9fe.svg#e49c440c-7653-44ce-96d2-f775947ba9fe) format("svg");}
+@font-face{font-family:"Gill Sans Semi Bold";src:url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/ccd0adbe-535a-4d2e-a75d-91656a5cdc32.eot?iv=345#iefix);src:url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/ccd0adbe-535a-4d2e-a75d-91656a5cdc32.eot?iv=345#iefix) format("eot"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/5fb9e481-085f-4ad5-8574-ffabb4dbe7a9.woff2) format("woff2"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/cc1cc8a6-92c2-4d62-973e-e4a20c3df0bf.woff?iv=345) format("woff"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/4be50539-3222-4eff-b978-78bd5e7a2d99.ttf?iv=345) format("truetype"),url(https://tnc-addedlovelyltd.netdna-ssl.com/wp-content/themes/template-4_9_3/fonts/e868eb1d-3795-4f13-9a8c-0eff50140f93.svg#e868eb1d-3795-4f13-9a8c-0eff50140f93) format("svg");}
+
+.crop {
+	vertical-align: middle
+	align:center;
+	height: 350px;
+	width: 350px;
+	overflow: hidden;
+	list-style-type: none;
+	display: inline-block;
+}
+
+.artesaoVermelho:hover:after{background-color:rgba(0,0,200,0.3);}
+

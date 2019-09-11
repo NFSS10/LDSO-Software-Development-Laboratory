@@ -1,0 +1,763 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <link href="{% static 'users/css/editProfile.css' %}" rel="stylesheet">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+	<!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/utilizadores/profile.css' %}" rel="stylesheet">
+
+
+
+</head>
+<body>
+
+	{% include "users/common/header.html" %}
+
+	<section id="weird-header-section-fix-of-precious-group-fix">
+	</section>
+    <div style="margin: 0 auto;">
+        <div class="row">
+            <div class="col-xs-12 title text-center">
+			{%if user.reprovado%}
+				<h2 style="color: red;"class="main-heading">Utilizador reprovado,veja o seu Email.</h2>
+			{%endif%}
+                <h2 class="main-heading">EDITAR PERFIL</h2>
+            </div>
+            <div class="container panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        {%if user.artesao or user.criativo%}
+                            <div class="col-sm-4 ">
+                                <a href="#" class="active aba" id="info-form-link">INFORMAÇÃO</a>
+                            </div>
+                            <div class="col-sm-4 ">
+                                <a  href="#" class="aba" id="multi-form-link">MULTIMÉDIA</a>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <a  href="#" class="aba" id="tools-form-link">FERRAMENTAS</a>
+                            </div>
+                        {%else%}
+                            <div class="col-sm-6 ">
+                                <a href="#" class="active aba" id="info-form-link">INFORMAÇÃO</a>
+                            </div>
+                            <div class="col-sm-6 ">
+                                <a href="#" class="aba" id="multi-form-link">MULTIMÉDIA</a>
+                            </div>
+                        {%endif%}
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="container" id="infoForm">
+                            <section id="infoSection"  class="active">
+                                <div id="loginForm">
+                                    {% ifequal default 'info' %}
+                                        {% for errorMsg in errorMsgs %}
+                                            <div>
+                                                <label style="color: red">{{errorMsg}}</label>
+                                                <br>
+                                            </div>
+                                        {% endfor %}
+                                        {% for infoMsg in infoMsgs %}
+                                            <div>
+                                                <label style="color: green">{{infoMsg}}</label>
+                                                <br>
+                                            </div>
+                                        {% endfor %}
+                                    {% endifequal %}
+                                    <i class="material-icons register-icons">email</i>
+                                    <label>Email:  {{user.email}}</label>
+
+                                    <form id="maker-form" action="/utilizadores/editProfileAction" method="post" role="form" >
+                                        <div class="form-group">
+                                            <i class="material-icons register-icons">person</i>
+                                            <label>Nome: </label>
+                                            <input type="text" name="name" id="name" tabindex="1"
+                                                   class="form-control editForm" placeholder="{{user.name}}" value="">
+                                        </div>
+
+                                        <div>
+                                            <i class="material-icons register-icons">lock</i>
+                                            <label> Password:</label>
+                                            <div class="form-group">
+                                                <input type="password" name="new_password" id="newPassword" tabindex="2"
+                                                       class="form-control editForm" placeholder="Nova Palavra Passe ">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="old_password" id="oldPassword" tabindex="2"
+                                                       class="form-control editForm" placeholder="Palavra Passe Atual">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="material-icons">account_box</i>
+                                            <label>Biografia: </label>
+                                            <textarea name="bio" style="resize: none; width: 100%; -webkit-box-sizing: border-box;-moz-box-sizing: border-box; box-sizing: border-box;  " placeholder="{{user.bio}}"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <i class="material-icons">call</i>
+                                            <label>Número Telemovel: </label>
+                                            <input type="text" name="phone_number" id="phoneNumber" tabindex="2"
+                                                   class="form-control editForm" placeholder={{user.phoneNumber}}>
+                                        </div>
+                                        {% if user.utilizador %}
+                                        <div class="form-group">
+                                            <i class="material-icons register-icons">edit_location</i>
+                                            <label>Morada: </label>
+                                            <input type="text" name="adress" id="adress" tabindex="2"
+                                                   class="form-control editForm" placeholder="{{user.utilizador.adress}}">
+                                        </div>
+                                        {% else %}
+                                        <i class="material-icons">edit_location</i>
+                                        <label>Localização:</label>
+                                        <div style="width: 100%;" id="map"></div>
+                                        <div class="col-md-12">
+
+                                            <input name="address" id="pac-input" class="controls-map" type="text" placeholder="Enter a location">
+                                            <input type="hidden" name="geolocation" id="geolocation">
+                                            <input type="hidden" name="latitude" id="latitude">
+                                            <input type="hidden" name="longitude" id="longitude">
+
+                                        </div>
+                                        {% endif %}
+
+                                        <input type="submit" name="edit-submit" id="login-submit" tabindex="4" class="btn btn-default inputButton" value="Alterar">
+                                        {% csrf_token %}
+                                    </form>
+                                </div>
+                            </section>
+                            <section id="multiSection">
+
+                                {% ifnotequal  default 'info'%}
+                                    {% for errorMsg in errorMsgs %}
+                                        <div>
+                                            <label style="color: red">{{errorMsg}}</label>
+                                            <br>
+                                        </div>
+                                    {% endfor %}
+                                    {% for infoMsg in infoMsgs %}
+                                        <div>
+                                            <label style="color: green">{{infoMsg}}</label>
+                                            <br>
+                                        </div>
+                                    {% endfor %}
+                                {% endifnotequal %}
+                                <i class="material-icons register-icons">person</i>
+                                <label>Imagem de Perfil:</label>
+                                <div id="imgDiv">
+                                    <img align="middle" src="../{{user.picUrl}}" class="img-circle img-responsive" alt="Imagem de perfil" style="width:200px;height:200px;">
+
+                                    <form id="profileImgForm" class="uploadForm" method="post" action="/utilizadores/uploadImageAction" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button id="profileImg-button-browse" type="button" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-file"></span>
+                                            </button>
+                                        </span>
+                                            <input type="file" accept="image/png, image/jpeg, image/gif" id="files-input-upload" name="img" style="display:none">
+                                            <input type="text" id="profileImg-input-name" disabled="disabled" placeholder="File not selected" class="form-control">
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default fileUploadBtn" disabled="disabled" onclick="submitProfileImg()" id="profileImg-button-upload">
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                            </button>
+	                                    </span>
+                                        </div>
+                                    </form>
+                                </div>
+                                <i class="material-icons register-icons">add_a_photo</i>
+                                <label>Imagens</label>
+                                <label>(Maximo de 5 imagens):</label>
+                                    {%if nImages != 0%}
+                                        <br>
+                                        <br>
+                                        <div id="gallery">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class='list-group gallery'>
+                                                        {%for image in images%}
+                                                            <div style="display: inline-block;">
+                                                                <a style="margin-bottom : 0px;" class="thumbnail fancybox moldura" rel="ligthbox" href="../{{image.imgUrl}}">
+                                                                    <img  class="img-responsive galImage" alt="" src="../{{image.imgUrl}}" />
+                                                                </a>
+                                                                <form method="post" action="/utilizadores/delete5Image">
+                                                                    <input type="hidden" name="imgurl" value="{{image.imgUrl}}">
+                                                                    {% csrf_token %}
+                                                                    <input style="width: 100%;" type="submit" name="submit" id="deleteImage" class="form-control btn btn-default" value="Apagar">
+                                                                </form>
+                                                            </div> <!-- col-6 / end -->
+                                                        {%endfor%}
+                                                    </div> <!-- list-group / end -->
+                                                </div> <!-- row / end -->
+                                            </div> <!-- container / end -->
+                                        </div>
+                                    {%else%}
+                                        <br>
+                                        <br>
+                                    {%endif%}
+
+                                    <form method="post" id="imgForm" action="/utilizadores/upload5ImageAction" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button id="img-button-browse" type="button" class="btn btn-default">
+                                                <span class="glyphicon glyphicon-file"></span>
+                                            </button>
+                                        </span>
+                                            <input type="file" accept="image/png, image/jpeg, image/gif" id="5files-input-upload" name="5image" style="display:none">
+                                            <input type="text" id="img-input-name" disabled="disabled" placeholder="File not selected" class="form-control">
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default fileUploadBtn" disabled="disabled" onclick="submitImg()" id="img-button-upload">
+                                                <span class="glyphicon glyphicon-upload"></span>
+                                            </button>
+	                                    </span>
+                                        </div>
+                                    </form>
+                                    <br>
+                                    <i class="material-icons register-icons">play_arrow</i>
+                                    <label>Youtube video URL:</label><br>
+                                    <form id="video-form" action="/utilizadores/chageUserVideo" method="post" role="form" >
+                                        <div class="form-group">
+
+
+                                         
+                                            <input type="text" name="videoUrl" id="videoUrl" tabindex="1"
+                                                   class="form-control editForm" placeholder="{{user.videoUrl}}" value="">
+                                            {% csrf_token %}
+                                            <input style="width: 100%" type="submit" name="video-submit" id="video-submit" tabindex="4" class="form-control btn btn-default" value="Alterar">
+                                        </div>
+
+                                    </form>
+									{%if user.videoUrl != ""%}
+										<iframe style="width: 100%; height: 400px"
+												src="{{user.videoUrl}}">
+										</iframe>
+									{%endif%}
+                            </section>
+                            {%if not user.utilizador%}
+                            <section id="toolSection">
+                                <div class="">
+                                    <i class="material-icons register-icons">gavel</i>
+                                    <label class="title">Adicionar Ferramenta:</label>
+                                    <div class="">
+                                        <form method="post" action="/ferramentas/addTool" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="">
+                                                <label>Nome da ferramenta:</label>
+                                                <input class="form-control" type="text" name="nomeFerramenta" placeholder="Nome da ferramenta" required>
+                                            </div>
+                                            <div class="">
+                                                <label>Descrição da ferramenta:</label>
+                                                <input class="form-control" type="text" name="descFerramenta" placeholder="Descrição da ferramenta" required>
+                                            </div>
+                                            <div class="">
+                                                <label>Preço/hora (€):</label>
+                                                <input class="form-control" id="toolPrice" type="text" name="precoFerramenta" placeholder="Preço/Hora" required>
+											</div>
+											<div class="">
+                                                <label>Imagem:</label>
+                                                <br>
+												<div class="col-xs-12 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+													<!-- image-preview-filename input [CUT FROM HERE]-->
+													<div class="input-group image-preview">
+                                                        <span class="input-group-btn">
+															<!-- image-preview-clear button -->
+															<button type="button" class="btn btn-default image-preview-clear" style="display:none;">
+																<span class="glyphicon glyphicon-remove"></span> Clear
+															</button>
+                                                            <!-- image-preview-input -->
+															<div class="btn btn-default image-preview-input">
+																<span class="glyphicon glyphicon-folder-open"></span>
+																<span class="image-preview-input-title">Browse</span>
+																<input type="file" accept="image/png, image/jpeg, image/gif" name="imgFerramenta" required/> <!-- rename it -->
+															</div>
+														 </span>
+														<input type="text" class="form-control image-preview-filename" disabled="disabled"> <!-- don't give a name === doesn't send on POST/GET -->
+
+													</div><!-- /input-group image-preview [TO HERE]-->
+												</div>
+											</div>
+                                            <div class="">
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <input style="width: 100%" class="btn btn-default" type="submit" name="criarFerramenta" value="Criar.">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="row">
+                                        <i class="material-icons register-icons">gavel</i>
+                                        <label class="title">Ferramentas actuais: </label>
+                                        {%if nTools != 0%}
+                                            <br>
+                                            <br>
+                                            <div class="row">
+                                                <div class="span12">
+                                                    <div class="">
+                                                        <div id="myCarousel" class="carousel slide">
+
+                                                            <ol class="carousel-indicators">
+                                                                {%for i in toolsRange%}
+                                                                    <li data-target="#myCarousel" data-slide-to="{{i}}" class="active"></li>
+                                                                {%endfor%}
+                                                            </ol>
+
+                                                                    <!-- Carousel items -->
+                                                            <div class="carousel-inner">
+                                                                {% for tool in tools %}
+                                                                    {% if forloop.counter0|divisibleby:3 %}
+                                                                        <div class="item {% if forloop.counter0 == 0%}active{% endif %}">
+                                                                            <div class="row-fluid">
+                                                                                {% endif %}
+
+                                                                                <div class="col-md-4">
+                                                                                    <div class="toolContainer">
+                                                                                        <a href="/ferramentas/viewTool?id={{tool.id}}" class="thumbnail" style="margin-bottom:0px;">
+                                                                                            <li class="crop">
+                                                                                                <img class="carouselImg" src="../{{tool.imageUrl}}" alt="ToolImage" />
+                                                                                            </li>
+                                                                                            <label class="ferramentaNome">{{tool.name}}</label>
+                                                                                            <br>
+                                                                                            <label class="ferramentaPreco">{{tool.price}} €/Hora </label>
+                                                                                        </a>
+                                                                                        <form method="post" action="/ferramentas/deleteTool" onsubmit="return confirm('De certeza que quer apagar esta Ferramenta?');">
+                                                                                            {% csrf_token %}
+                                                                                            <input type="hidden" value="{{tool.id}}" name="toolId">
+                                                                                            <input class="deleteToolButtoninput btn btn-default" type="submit" value="Delete">
+                                                                                        </form>
+                                                                                    </div>
+                                                                                </div>
+                                                                                {% if forloop.counter|divisibleby:3 %}
+                                                                            </div><!--/row-fluid-->
+                                                                        </div><!--/item-->
+                                                                    {% endif %}
+                                                                                {% if forloop.counter|divisibleby:nTools and not nTools|divisibleby:3%}
+                                                                            </div><!--/row-fluid-->
+                                                                        </div><!--/item-->
+                                                                    {% endif %}
+                                                                {%endfor%}
+                                                            </div><!--/carousel-inner-->
+                                                            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                                                            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                                                        </div><!--/myCarousel-->
+                                                    </div><!--/well-->
+                                                </div>
+                                            </div>
+                                        {%else%}
+                                            <br>
+                                            <label>Ainda nao tem ferramentas.</label>
+                                        {%endif%}
+
+
+                                     </div>
+                                </div>
+                            </section>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
+<script>
+    function initAutocomplete() {
+        userLatitude = 0.0;
+        userLongitude = 0.0;
+
+        {% if user.criativo %}
+        var latStrs = '{{user.criativo.latitude}}'.split(",");
+        var latStr = latStrs[0]+'.'+latStrs[1];
+        var lonStrs = '{{user.criativo.longitude}}'.split(",");
+        var lonStr = lonStrs[0]+'.'+lonStrs[1];
+        userLatitude = parseFloat(latStr);
+        userLongitude = parseFloat(lonStr);
+        {% endif %}
+        {% if user.artesao %}
+        var latStrs = '{{user.artesao.latitude}}'.split(",");
+        var latStr = latStrs[0]+'.'+latStrs[1];
+        var lonStrs = '{{user.artesao.longitude}}'.split(",");
+        var lonStr = lonStrs[0]+'.'+lonStrs[1];
+        userLatitude = parseFloat(latStr);
+        userLongitude = parseFloat(lonStr);
+        {% endif %}
+        console.log(userLatitude)
+        var myLatLng = {lat:userLatitude, lng: userLongitude};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLng,
+    zoom: 13,
+    mapTypeId: 'roadmap',
+        styles:[
+    {
+        "featureType": "all",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "weight": "2.00"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#9c9c9c"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#eeeeee"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#7b7b7b"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#46bcec"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#c8d7d4"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#070707"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    }
+]
+
+    });
+
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.
+    map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+    });
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
+    var markers = [];
+    markers.push(marker);
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
+    searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+    return;
+    }
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+    marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+    if (!place.geometry) {
+    console.log("Returned place contains no geometry");
+    return;
+    }
+
+    var icon = {
+    url: place.icon,
+    size: new google.maps.Size(71, 71),
+    origin: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(17, 34),
+    scaledSize: new google.maps.Size(25, 25)
+    };
+
+    // Create a marker for each place.
+    markers.push(new google.maps.Marker({
+    map: map,
+    icon: icon,
+    title: place.name,
+    position: place.geometry.location
+    }));
+    $("#geolocation").val(place.name);
+    $("#latitude").val(place.geometry.location.lat());
+    $("#longitude").val(place.geometry.location.lng());
+    console.log(place.name);
+    if (place.geometry.viewport) {
+    // Only geocodes have viewport.
+    bounds.union(place.geometry.viewport);
+    } else {
+    bounds.extend(place.geometry.location);
+    }
+    });
+    map.fitBounds(bounds);
+    });
+    }
+
+</script>
+{%if user.criativo or user.artesao%}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvanTO8uzZXVE466u1cT4PdMD7nn-jtKA&libraries=places&callback=initAutocomplete" async defer></script>
+{%endif%}
+
+<script>
+$('.carousel').carousel({
+  interval: false
+});
+</script>
+<script>
+    function codeAddress()
+    {
+        console.log('{{default}}')
+        if ('{{default}}' == "info")
+        {
+            $("#infoSection").delay(100).fadeIn(100);
+            $("#multiSection").fadeOut(100);
+            $('#multi-form-link').removeClass('active');
+            $('#info-form-link').addClass('active');
+            if('{{user.type}}' != "utilizador")
+            {
+                $("#toolSection").fadeOut(100);
+                $('#tools-form-link').removeClass('active');
+            }
+        }
+        else if ('{{default}}' == "multimedia")
+        {
+            $("#multiSection").delay(100).fadeIn(100);
+            $("#infoSection").fadeOut(100);
+            $('#info-form-link').removeClass('active');
+            $('#multi-form-link').addClass('active');
+            if('{{user.type}}' != "utilizador")
+            {
+                $("#toolSection").fadeOut(100);
+                $('#tools-form-link').removeClass('active');
+            }
+        }
+        else if ('{{default}}' == "ferramentas")
+        {
+            $("#toolSection").delay(100).fadeIn(100);
+            $("#infoSection").fadeOut(100);
+            $("#multiSection").fadeOut(100);
+            $('#multi-form-link').removeClass('active');
+            $('#info-form-link').removeClass('active');
+            $('#tools-form-link').addClass('active');
+        }
+    }
+    window.onload = codeAddress;
+
+
+</script>
+<script>
+    $(document).ready(function() {
+        $("#toolPrice").keydown(function (e) {
+            // Allow: backspace, delete, tab, escape, enter and .
+            if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+                // Allow: Ctrl/cmd+A
+                (e.keyCode == 65 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+C
+                (e.keyCode == 67 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: Ctrl/cmd+X
+                (e.keyCode == 88 && (e.ctrlKey === true || e.metaKey === true)) ||
+                // Allow: home, end, left, right
+                (e.keyCode >= 35 && e.keyCode <= 39)) {
+                // let it happen, don't do anything
+                return;
+            }
+            // Ensure that it is a number and stop the keypress
+            if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+
+
+<script src="{% static 'users/js/edit-profile.js' %}" ></script>
+
+
+
+
+
+</html>
+
+
+
+
+
+
+

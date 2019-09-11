@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--content-->
+<div class="content">
+    <!--single-->
+    <div class="single-wl3">
+        <div class="container">
+            <div class="single-grids">
+                <div class="col-md-9 single-grid">
+                    <div clas="single-top">
+                        <div class="single-left">
+                            <div class="flexslider">
+                                <div class="thumb-image"> <img src="../../media/{{product.image}}" data-imagezoom="true" class="img-responsive"> </div>
+                            </div>
+                        </div>
+
+                        <div class="single-right simpleCart_shelfItem">
+                            
+                            <h4>{{product.name}}</h4>
+                            <div class="block">
+                                <div class="starbox small ghosting"> </div>
+                            </div>
+                            <p class="price item_price">{{product.sale_price}}</p>
+                            <div class="description">
+                                <p><span> Descrição</span> {{product.description}}</p>
+                            </div>
+                            <div class="color-quality">
+                                <h6>Quantidade :</h6>
+                                <div class="quantity"> 
+                                    <div class="quantity-select">                           
+                                        <div class="entry value-minus1">&nbsp;</div>
+                                        <div class="entry value1"><span>1</span></div>
+                                        <div class="entry value-plus1 active">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <!--quantity-->
+                                <script>
+                                    $('.value-plus1').on('click', function(){
+                                        var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)+1;
+                                        divUpd.text(newVal);
+                                        document.getElementById('qty').value=newVal;
+                                    });
+
+                                    $('.value-minus1').on('click', function(){
+                                        var divUpd = $(this).parent().find('.value1'), newVal = parseInt(divUpd.text(), 10)-1;
+                                        if(newVal>=1){ divUpd.text(newVal);
+                                           document.getElementById('qty').value=newVal;}
+
+                                    });
+                                </script>
+                                <!--quantity-->
+                            </div>
+                            <div class="women">
+                            <!-- <span class="size">XL / XXL / S </span>-->
+                                {%if user.is_authenticated%}
+                                <form id="add_to_cart" action="../../cart/add_productCart/" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="product"value="{{product.id}}">
+                                    <input id="qty"type="hidden" name="quantidade" value="1">
+                                    <input type="submit"  class="my-cart-b item_add" name="submit" value="Adicionar ao carrinho">
+                                </form>
+                                {% endif %}
+                                <!--<a href="#" data-text="Add To Cart" class="my-cart-b item_add">Adicionar ao carrinho</a>-->
+                            </div>
+                            <div class="social-icon">
+                                <a href="#"><i class="icon"></i></a>
+                                <a href="#"><i class="icon1"></i></a>
+                                <a href="#"><i class="icon2"></i></a>
+                                <a href="#"><i class="icon3"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-top">   
+                        <div class="row">
+                            <h3>Artesãos </h3>                                
+                            <div class="table-container">
+                                <table class="table table-filter">
+                                    <tbody>
+                                    {% for user in responsibles %}
+                                        <tr>
+                                            <td>                                                                                    
+                                                <div class="media">
+                                                    <a href="../../utilizadores/perfil?id={{user.id}}" class="pull-left">
+                                                        <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" width="42" height="42">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        
+                                                        <h4 class="title paddint-top:10px">
+                                                           {{user.name}}
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!--single-->
+
+{% endblock %}

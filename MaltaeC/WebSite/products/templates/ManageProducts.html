@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="padding-top">
+<table style="width:100%">
+  <tr>
+    <th>Product</th>
+    <th>STATUS</th>
+    <th>Opção</th>
+  </tr>
+    {% for product in products %}
+  <tr>
+     <td><a href="{% url 'products:show-product' product.pk %}">{{ product.name }}</a></td>
+    {% if product.active == True %}
+      <td>Ativo</td>
+      <td><form action="{% url 'products:deactivateProduct' product.pk %}" method="get">
+          <input type="submit" name="submit" value="Desativar ?">
+      </form></td>
+    {% else %}
+    <td>Inativo</td>
+      <td><form action="{% url 'products:activateProduct' product.pk %}" method="get">
+          <input type="submit" name="submit" value="Ativar ?">
+      </form></td>
+    {% endif %}
+  </tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

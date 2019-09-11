@@ -1,0 +1,80 @@
+.event_img{
+   position: relative;
+   width: 100%;
+   border-radius: 10%;
+}
+
+.event_name_artesao{
+   bottom: 8%;
+   position: absolute;
+
+   text-align: left;
+   background-color: orange;
+   
+
+   /* div é omitido */
+   width: 80%;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+
+   opacity: 0.8;
+}
+.event_name_artesao:hover{
+   background-color:rgba(255, 0, 0, 0.685);
+   opacity: 1;
+}
+
+.event_name_criativo{
+   bottom: 8%;
+   position: absolute;
+
+   text-align: left;
+   background-color: orange;
+   
+
+   /* div é omitido */
+   width: 80%;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+
+   opacity: 0.8;
+}
+.event_name_criativo:hover{
+   background-color:rgba(0, 0, 255, 0.685); 
+}
+
+.event_name_admin{
+   bottom: 8%;
+   position: absolute;
+
+   text-align: left;
+   background-color: orange;
+   
+
+   /* div é omitido */
+   width: 80%;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+
+   opacity: 0.8;
+}
+.event_name_admin:hover{
+   background-color:rgba(255, 255, 255, 0.712); 
+}
+
+.only_name a:hover{
+   text-decoration: none;
+   animation: none;
+}
+
+.only_name{
+   padding-left: 2%;
+
+   width: auto;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+}

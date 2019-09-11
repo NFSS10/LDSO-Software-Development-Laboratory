@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+{% if user.is_staff %}
+<div id="newpost">
+<a href="/blog/add_post"> Criar Novo Post </a>
+</div>
+{% endif %}
+
+{% for post in posts reversed %}
+
+<div id="post">
+{% csrf_token %}
+<div id="date">
+{{ post.data }}
+</div>
+<div id="title">
+	{{ post.title }}
+</div>
+<div id="text">
+{{post.text}}
+</div>
+<div id="img1">
+{% if post.image1 %}
+	<img src="../../media/{{post.image1}}" data-imagezoom="true" class="img-responsive"/>
+{% endif %}
+</div>
+<div id="img2">
+{% if post.image2 %}
+	<img src="../../media/{{post.image2}}" data-imagezoom="true" class="img-responsive"/>
+{% endif %}
+</div>
+<div id="img3">
+{% if post.image3 %}
+	<img src="../../media/{{post.image3}}" data-imagezoom="true" class="img-responsive"/>
+{% endif %}
+</div>
+<div id="img4">
+{% if post.image4 %}
+	<img src="../../media/{{post.image4}}" data-imagezoom="true" class="img-responsive"/>
+{% endif %}
+</div>
+
+<div id="myModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <a class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></a>
+                    <h4 class="modal-title" id="myModalLabel">Eliminar Post</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Tem a certeza que deseja eliminar o post?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn-group">
+                    <div id="cancel_del">
+	                     <a class="btn btn-danger" data-dismiss="modal"></span>Cancelar</a>
+					</div>
+                    <div id="confirm_del">
+	                    <form action='/blog/delete_post/{{post.id}}'>
+		    				<input type="submit" value="Eliminar" />
+						</form>
+					</div>
+                </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dalog -->
+</div><!-- /.modal -->
+
+{% if user.is_staff %}
+<div id="buttons">
+	<div id="postedit">
+	<form action='/blog/edit_post/{{post.id}}'>
+	    <input type="submit" value="Editar Post" />
+	</form>
+	</div>
+	<div id="delete">
+		<a data-toggle="modal" href="#myModal" class="btn">Eliminar Post</a>
+	</div>
+</div>
+{% endif %}
+
+</div>
+
+{% endfor %}
+{% endblock %}

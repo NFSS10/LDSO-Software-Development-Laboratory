@@ -1,0 +1,16 @@
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Os adminstradores da {{ site_name }} querem que revejas a informação do evento que foi submetido.{% endblocktrans %}
+{% trans "Segue abaixo a mensagem que te enviaram:" %}
+{% block reset_link %}
+    {{ adminMail }}
+{% endblock %}
+{% trans "Podes efetuar alterações no seguinte endereço web:" %}
+    {% block edit_link %}
+        {{ domain }}{% url 'editar' eventId %}
+    {% endblock %}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+
+{% endautoescape %}

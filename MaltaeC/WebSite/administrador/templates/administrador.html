@@ -1,0 +1,219 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">~
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+	<!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/administrador/manage.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+	{% include "users/common/header.html" %}
+	<section id="weird-header-section-fix-of-precious-group-fix">
+	</section>
+	
+	<!--Conteudo da Pagina dentro de Info ...-->
+	<div class="info">
+        <h1 class="tituloAdmin">Administração</h1>
+
+        <div class="text-center">
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/mudarCarousel','self');">Alterar Imgs. Pág. Inicial</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/manage','self');">Novos Utilizadores</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/utilizadores/registo','self');">Registar Novo Utilizador</button>
+			<button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/reprovados','self');">Reprovados</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/desbanirUser','self');">Emails banidos</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/allUsers','self');">Todos os Utilizadores</button>
+            {% if user.is_superuser %}
+                <button type="button" class="btn btn-large btn-warning" onclick="window.open('/administrador/addAdmin','self');">Adicionar Admin</button>
+            {% endif %}
+        </div>
+        <hr class="linhaDivisao">
+
+
+        <div class="row containerPagina">
+                <!--------------------------------------->
+                <div class="row">
+                    <h2 class="subDivTitulo">Novos Registos</h2>
+
+                    <div class="row">
+                        <h3>Artesãos</h3>
+                        <ul class="list-group">
+                            {% for artesaoInativo in listaArtesaoInativos %}
+                               <li class="list-group-item">
+                                    {{artesaoInativo.name}} - {{artesaoInativo.email}}
+                                        <span class="pull-right">
+                                            <div class="btn-group">
+                                                <button type="button" onclick="window.open('/utilizadores/perfil?id={{ artesaoInativo.id }}');">
+                                                    <span class="glyphicon glyphicon-user" aria-hidden="true">Ver Perfil</span>
+                                                </button>
+                                                <button type="button" data-target="#{{ artesaoInativo.id }}" data-toggle="collapse">
+                                                     <span class="glyphicon glyphicon-plus" aria-hidden="true">Info</span>
+                                                </button>
+
+                                                 <button type="button" data-toggle="confirmation" onclick="formArtAprovUser.submit();">
+                                                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true">Aprovar</span>
+                                                 </button>
+
+                                                <button type="button" data-toggle="confirmation" onclick="formArtReprovUser.submit();">
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true">Reprovar</span>
+                                                </button>
+                                                <button type="button" data-toggle="confirmation" onclick="formArtBanirUser.submit();">
+                                                    <span class="glyphicon glyphicon-skull" aria-hidden="true">Banir</span>
+                                                </button>
+                                            </div>
+                                            <form id="formArtAprovUser" method="post" action="/administrador/aprovarUser">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ artesaoInativo.id }}" />
+                                            </form>
+                                            <form id="formArtReprovUser" method="post" action="/administrador/reprovarUser">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ artesaoInativo.id }}" />
+                                            </form>
+                                            <form id="formArtBanirUser" method="post" action="/administrador/banirUser">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ artesaoInativo.id }}" />
+                                            </form>
+
+
+
+
+
+
+                                        </span>
+
+                                        <div id="{{ artesaoInativo.id }}" class="collapse">
+                                            <hr>
+                                            <h3>Apresentação de registo</h3>
+                                            {{artesaoInativo.propostaRegisto.texto}}
+                                            <br>
+                                            <img alt="" class="img-responsive" src="../{{artesaoInativo.propostaRegisto.imgUrl}}" />
+                                            <br>
+                                            {% if artesaoInativo.propostaRegisto.videoUrl != "" %}
+                                                <h3>Video:</h3>
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" src="{{artesaoInativo.propostaRegisto.videoUrl}}"></iframe>
+                                                </div>
+                                            {% endif %}
+
+                                            <br><br>
+                                        </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="row">
+                        <h3>Criativos</h3>
+                        <ul class="list-group">
+                            {% for criativoInativo in listaCritativoInativos %}
+                                <li class="list-group-item">
+                                    {{criativoInativo.name}} - {{criativoInativo.email}}
+                                        <span class="pull-right">
+                                            <div class="btn-group">
+                                                <button type="button" onclick="window.open('/utilizadores/perfil?id={{ criativoInativo.id }}');">
+                                                    <span class="glyphicon glyphicon-user" aria-hidden="true"> Ver Perfil</span>
+                                                </button>
+                                                <button type="button" data-target="#{{ criativoInativo.id }}" data-toggle="collapse">
+                                                     <span class="glyphicon glyphicon-plus" aria-hidden="true">Info</span>
+                                                </button>
+
+                                                 <button type="button" data-toggle="confirmation" onclick="formCriaAprovUser.submit();">
+                                                    <span class="glyphicon glyphicon-ok-sign" aria-hidden="true">Aprovar</span>
+                                                 </button>
+
+                                                <button type="button" data-toggle="confirmation" onclick="formCriaReprovUser.submit();">
+                                                    <span class="glyphicon glyphicon-remove" aria-hidden="true">Reprovar</span>
+                                                </button>
+                                                <button type="button" data-toggle="confirmation" onclick="formCriaBanirUser.submit();">
+                                                    <span class="glyphicon glyphicon-skull" aria-hidden="true">Banir</span>
+                                                </button>
+                                            </div>
+                                            <form id="formCriaAprovUser" method="post" action="/administrador/aprovarUser">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ criativoInativo.id }}" />
+                                            </form>
+                                            <form id="formCriaReprovUser" method="post" action="/administrador/reprovarUser">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ criativoInativo.id }}" />
+                                            </form>
+                                            <form id="formCriaBanirUser" method="post" action="/administrador/banirUser">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id" value="{{ criativoInativo.id }}" />
+                                            </form>
+                                        </span>
+
+                                    <div id="{{ criativoInativo.id }}" class="collapse">
+                                            <hr>
+                                            <h3>Apresentação de registo</h3>
+                                            {{criativoInativo.propostaRegisto.texto}}
+                                            <br>
+                                            <img alt="" class="img-responsive" src="../{{criativoInativo.propostaRegisto.imgUrl}}" />
+                                            <br>
+                                            {% if criativoInativo.propostaRegisto.videoUrl != "" %}
+                                                <h3>Video:</h3>
+                                                <div class="embed-responsive embed-responsive-16by9">
+                                                    <iframe class="embed-responsive-item" src="{{criativoInativo.propostaRegisto.videoUrl}}"></iframe>
+                                                </div>
+                                            {% endif %}
+
+                                            <br><br>
+                                        </div>
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!--------------------------------------->
+        </div>
+
+
+    </div>
+	{% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+
+
+
+</html>
+
+
+
+
+
+
+

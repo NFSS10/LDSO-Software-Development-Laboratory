@@ -1,0 +1,96 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+	<!-- Personalized CSS -->
+    <link href="{% static 'css/WebSite/sobre.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+	{% include "users/common/header.html" %}
+	<section id="weird-header-section-fix-of-precious-group-fix">
+	</section>
+	
+	<!--Conteudo da Pagina dentro de Info ...-->
+	<div class="info">
+        <div class="row containerPagina">
+            <!--------------------------------------->
+            <div class="row">
+                <img id="logoImg" src="../media/maltaLogo.png" alt="Malta e Companhia">
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="tituloDestaque">Malta&Cª</div>
+                    <div class="tituloTexto">Design cooperativo local, para a vida contemporânea.</div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="textoDestaque">Esta iniciativa pretende responder ao crescente desaparecimento das artes e ofícios locais,
+                        com uma proposta de valor social e uma abordagem inovadora utilizando práticas ancestrais e um novo modelo de produção cooperativo.
+                    </div>
+                    <div class="texto">
+                        <div class="textoIntro">
+                            A Malta&Cª é uma marca de design, que assume o compromisso de produzir exclusivamente com as artes e ofícios locais,
+                            valorizando e dignificando estas actividades, importantes na economia local e nas rotinas de um bairro.
+                        </div>
+                        •	Objectivo central: a valorização, a expansão e a renovação das artes e ofícios e de microempresas locais<br>
+                        •	Identificar ,pesquisar, mapear , documentar, divulgar e promover as artes e ofícios existentes e potenciar a reativação do comércio local<br>
+                        •	Aumentar a cooperação entre agentes da mesma comunidade; fomentando contactos, trabalho em rede e parcerias;<br>
+                        •	Aumentar e diversificar as fontes de receitas próprias dos agentes locais e cooperantes.<br>
+                        •	Produzir localmente com efeitos e custos controlados, enaltecendo a qualidade das oficinas e artes locais<br>
+                        •	Aumentar a notoriedade nacional e internacional das artes e ofícios portugueses<br>
+                        •	Fomentar o interesse pelas artes e ofícios na população jovem, apresentando-os como alternativa viável ao mercado de trabalho atual,
+                        de forma autónoma e sustentável, e confirmando a transmissão de conhecimentos<br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="textoApoio text-center">Esta iniciativa é apoiada pelo Programa Energia BIP/ZIP da Câmara Municipal de Lisboa e tem como parceiro essencial a Associação Rés do Chão.</div>
+                <img id="apoioImg" src="../media/apoios_5000.jpg" alt="Apoios">
+            </div>
+            <!--------------------------------------->
+        </div>
+    </div>
+	{% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+
+
+
+</html>
+

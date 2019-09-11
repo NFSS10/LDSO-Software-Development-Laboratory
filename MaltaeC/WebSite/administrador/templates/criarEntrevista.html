@@ -1,0 +1,146 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">~
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+	<!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/administrador/criarEntrevista.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+	{% include "users/common/header.html" %}
+	<section id="weird-header-section-fix-of-precious-group-fix">
+	</section>
+	
+	<!--Conteudo da Pagina dentro de Info ...-->
+	<div class="info">
+
+        <h1 class="tituloAdmin">Administração</h1>
+        <hr class="linhaDivisao">
+
+        <div class="row containerPagina">
+                <!--------------------------------------->
+                <div class="row">
+                    <h2 class="subDivTitulo">Adicionar Entrevista</h2>
+
+                    <div class="row">
+                        <div id="summernote"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-large btn-info btn-block" onclick="preview();">Preview</button>
+                        </div>
+                         <div class="col-md-3 col-md-offset-6">
+                            <button type="button" class="btn btn-large btn-success" onclick="enviar();">Adicionar  Entrevista</button>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <hr>
+                        <div id="preview">
+
+                        </div>
+                        <hr>
+                    </div>
+
+
+                    <form id="formAddEntrevista" method="post" action="/administrador/adicionarEntrevista">
+                        {% csrf_token %}
+                        <input type="hidden" name="idEntrevista" value="{{ idEntrevista }}" />
+                        <input type="hidden" id="conteudoEntr" name="conteudoEntrevista" value="aa" />
+                    </form>
+
+
+                </div>
+                <!--------------------------------------->
+        </div>
+
+
+    </div>
+	{% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+
+
+
+    <!-- Text Editor -->
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          $('#summernote').summernote({
+              height: 400,                 // set editor height
+              minHeight: null,             // set minimum height of editor
+              maxHeight: null,             // set maximum height of editor
+              focus: true                  // set focus to editable area after initializing summernote
+            });
+        })
+    </script>
+
+
+    <script>
+
+        function getContent()
+        {
+            content = $('#summernote').summernote('code');
+            return content;
+        }
+
+        function preview()
+        {
+             document.getElementById("preview").innerHTML = getContent();
+        }
+
+        function enviar()
+        {
+            document.getElementById('conteudoEntr').value=getContent() ;
+            document.getElementById("formAddEntrevista").submit();
+        }
+
+    </script>
+
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,6 @@
+{% load staticfiles %}
+{%if user.is_authenticated%}
+	{% include "users/common/header-maker.html" %}
+{% else %}
+	{% include "users/common/headerBase.html"%}
+{% endif %}

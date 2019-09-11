@@ -1,0 +1,57 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+
+body {
+    width: 100%;
+    height: 100%;
+	font-family: 'Quicksand', sans-serif;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+#profileImage > div > img{
+	width: 100%;
+}
+
+#rightCol, #leftCol {
+	margin-top: 50px;
+}
+
+#rightCol{
+		padding-right: 35px; /* O md já tem 15px = 50px*/
+		padding-left: 50px;
+		background-color: #eee;
+}
+
+section > .container {
+	margin-right: 20px;
+	margin-top: 50px;
+	width: inherit;
+
+}
+
+section > .container p {
+	text-align: justify;
+}
+
+#myCarousel {
+	padding-left: 20%;
+}
+
+section#profileImage{
+	padding-top: 100px;
+}
+
+#map-maker {
+	height: 300px;
+	margin: 15px;
+}
+
+a#maker-address:hover,
+a#maker-address:focus{
+	background-color: #eee !important;
+	color: #000;
+	font-weight: bold;
+}

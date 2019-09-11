@@ -1,0 +1,248 @@
+@font-face {
+    font-family: "encodeSans";
+    src: url(../../users/fonts/EncodeSans-Regular.ttf) format("truetype");
+}
+@font-face {
+    font-family: "encodeSans-Bold";
+    src: url(../../users/fonts/EncodeSans-Bold.ttf) format("truetype");
+}
+
+/*DROPDOWN*/
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: left;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: 100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 3;
+
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+	font-family: "encodeSans", Verdana, Tahoma;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+/*DROPDOWN*/
+
+#entrarBtn
+{
+	position: relative;
+	bottom: 4px;
+}
+
+#entrarBtn i
+{
+	position: relative;
+	top: 5px;
+	left: 5px;
+}
+
+#headerBreaker
+{
+	margin-right: 5%;
+	margin-left: 5%;
+	opacity: 0.1;
+}
+
+#headerContainer
+{
+	
+}
+#responsiveMenu{
+	display: none;
+	margin-right:30px;
+}
+
+
+@media screen and (max-width: 1050px) {
+    .headerButtonContainer{
+        display: none !important;
+    }
+	
+	#responsiveMenu
+	{
+		float: right;
+		display: inline-block;
+		width:100px;
+		
+	}
+	
+	#userDropdown a
+	{
+		font-family: "encodeSans", Verdana, Tahoma;
+	}
+	
+	#responsiveBtn i
+	{
+		position: relative;
+		left: 6px;
+		bottom: -6px;
+	}
+	
+	#person
+	{
+		left: -6px !important;
+	}
+	
+	#entrarBtnResponsive
+	{
+		font-family: "encodeSans", Verdana, Tahoma;
+		margin-left:5px;
+	}
+	.dropdown-menu a
+	{
+		font-family: "encodeSans", Verdana, Tahoma;
+		margin-left:15px;
+	}
+	
+	.dropdown-menu hr
+	{
+		width:80%;
+		opacity:0.1;
+	}
+	
+	#logoDiv{
+		display:inline;
+	}
+	
+	#logo{
+		display:inline;
+	}
+	
+	#logoDiv a{
+		display:inline;
+	}
+}
+
+.headerButtonContainer
+{
+	margin-right:20px;
+	display: inline-block;
+	float: right;
+}
+
+@media screen and (min-width: 100px) {
+    .custom-class {
+        width: 300px; /* either % (e.g. 60%) or px (400px) */
+    }
+}
+
+#modalLogin input{
+	width:100%;
+}
+
+#modalLogin i{
+	position: relative;
+	top: 3px;
+}
+
+#modalLogin .btn
+{
+	margin-top:10px;
+	font-family: "encodeSans", Verdana, Tahoma;
+}
+
+#modalLogin label,
+#modalLogin a,
+#modalLogin p,
+#modalLogin h4
+{
+	font-family: "encodeSans", Verdana, Tahoma;
+	font-weight: normal !important;
+}
+#modalLogin a,
+#modalLogin p,
+#modalLogin h4
+{
+	text-align: center;
+}
+.headerButton
+{
+	text-transform: uppercase;
+	font-family: "encodeSans", Verdana, Tahoma;
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+	height:100%;
+}
+.headerButton:hover
+{
+	
+	color: grey;
+}
+
+#logoDiv{
+	height:100%;
+
+}
+
+#logo
+{
+	width: 89px;
+	height: 85px;
+	margin-top: 15px;
+	margin-left: 12px;
+}

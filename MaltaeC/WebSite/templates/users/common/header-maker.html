@@ -1,0 +1,116 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/WebSite/headerMaker.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'js/dropdown.js' %}"></script>
+<div style="height:105px;" id="headerContainer">
+    <div id="logoDiv" class="col-sm-1"><!--Logo-->
+        <a id="logoAnchor" href="/home"><img id="logo" src="{% static 'media/maltaLogo.png' %}" alt="MaltaLogo"></a>
+    </div>
+    <div id="loggedInButton" class="col headerButtonContainer">
+		{%if user.is_staff%}
+        <button id="entrarBtn" class="headerButton dropbtn" onclick="dropdownFunction()">Administrador   {{user.name}}<i class="material-icons register-icons">arrow_drop_down</i></button>
+		{%else%}
+		<button id="entrarBtn" class="headerButton dropbtn" onclick="dropdownFunction()">{{user.name}}<i class="material-icons register-icons">arrow_drop_down</i></button>
+		{%endif%}
+        <div id="dropdownList" class="dropdown-content">
+            {%if user.is_staff%}
+            <a href="/administrador/manage">Administrar</a>
+            <a href="/products/add-product">Adicionar Produto</a>
+            <a href="/products/manage_products">Gerir os produtos</a>
+            <a href="/purchase/show_purchases_pending">Ver os Pedidos de compra pendentes</a>
+            <a href="/purchase/show_All_purchases">Ver todas as compras</a>
+            {%endif%}
+            <a href="/utilizadores/perfil?id={{user.id}}">Ver Perfil</a>
+            <a href="/utilizadores/editProfile">Editar Perfil</a>
+            <a href="/utilizadores/editProfile%23ferramentas">Ferramentas</a>
+			<a href="/purchase/show_user_purchases">Ver histórico de compras</a>
+            <a href="/utilizadores/logout">Sair</a>
+            
+        </div>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/cart/show_cart/">
+             <i class="glyphicon glyphicon-shopping-cart"><input class="headerButton" type="submit" value="Cart" /></i>
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/contacto">
+            <input class="headerButton" type="submit" value="CONTACTOS" />
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/ferramentas/tools">
+            <input class="headerButton" type="submit" value="FERRAMENTAS" />
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/store/list_products">
+            <input class="headerButton" type="submit" value="LOJA" />
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/blog">
+            <input class="headerButton" type="submit" value="SABER" />
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/eventos">
+            <input class="headerButton" type="submit" value="FAZER" />
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/utilizadores/artesaos">
+            <input class="headerButton" type="submit" value="OFICINAS" />
+        </form>
+    </div>
+    <div class="col headerButtonContainer">
+        <form  action="/sobre">
+            <input class="headerButton" type="submit" value="SOBRE" />
+        </form>
+    </div>
+    <div id="responsiveMenu" class="col-sm-auto dropdown"> <!--RESPONSIVE START-->
+        <button id="responsiveBtn" class="headerButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="person" class="material-icons register-icons">person</i>MENU<i class="material-icons register-icons">menu</i></button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="responsiveBtn">
+                <div class="col-sm-auto dropdown">
+                    <button id="nameBtnResponsive" class="headerButton dropbtn" data-toggle="#userDropdown" aria-haspopup="true" aria-expanded="false">{{user.name}}<i class="material-icons register-icons">arrow_drop_down</i></button>
+                    <ul id="userDropdown" class="dropdown-menu"><!--SECOND DROPDOWN-->
+                        <br>
+                        {%if user.is_staff%}
+                        <br><a href="/administrador/manage">Administrar</a><br><hr>
+						 <br><a href="/products/add-product">Adicionar Produto</a><br><hr>
+						 <br><a href="/products/manage_products">Gerir os produtos</a><br><hr>
+						 <br><a href="/purchase/show_purchases_pending">Ver os Pedidos de compra pendentes</a><br><hr>
+						 <br><a href="/purchase/show_All_purchases">Ver todas as compras</a><br><hr>
+                        {%endif%}
+                        <a href="/utilizadores/perfil?id={{user.id}}">Ver Perfil</a><hr><br>
+                        <a href="/utilizadores/editProfile">Adicionar Produtos</a><hr><br>
+                        <a href="/utilizadores/editProfile">Editar Perfil</a><hr><br>
+                        <a href="/utilizadores/editProfile%23ferramentas">Ferramentas</a><hr><br>
+						<a href="/purchase/show_user_purchases">Ver histórico de compras</a><hr><br>
+                        <a href="/utilizadores/logout">Sair</a><br><br><br>
+                    </ul>
+                </div>
+                <br><br>
+                <a class="dropdown-item" href="/about">SOBRE</a><hr><br>
+                <a class="dropdown-item" href="/utilizadores/artesaos">OFICINAS</a><hr><br>
+                <a class="dropdown-item" href="/eventos">FAZER</a><hr><br>
+                <a class="dropdown-item" href="/blog">SABER</a><hr><br>
+                <a class="dropdown-item" href="/store">LOJA</a><hr><br>
+            <a class="dropdown-item" href="/ferramentas/tools">FERRAMENTAS</a><hr><br>
+            <a class="dropdown-item" href="/contacts">CONTACTOS</a><br><br>
+        </div>
+    </div>
+
+</div>
+<hr id="headerBreaker">
+
+<script>
+    $(document).ready(function(){
+        $('#nameBtnResponsive').on("click", function(e){
+            console.log("Boas");
+            $(this).next('ul').toggle();
+            e.stopPropagation();
+            e.preventDefault();
+        });
+    });
+</script>

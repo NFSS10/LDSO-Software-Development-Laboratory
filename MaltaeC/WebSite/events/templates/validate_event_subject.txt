@@ -1,0 +1,3 @@
+{% load i18n %}{% autoescape off %}
+{% blocktrans %}Reveja as informações do seu evento da {{ site_name }}{% endblocktrans %}
+{% endautoescape %}

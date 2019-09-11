@@ -1,0 +1,56 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="padding-top">
+    <form id="add_product" action="/products/register_product" method="post" enctype="multipart/form-data"  role="form">
+        {% csrf_token %}
+        {{form}}
+        <div class="form-group">
+                <input type="text" name="name" id="name-product" tabindex="1"
+                    class="form-control" placeholder="Nome" value="">
+        </div>
+        <div class="form-group">
+                <input type="text" name="product_type" id="product-type" tabindex="1"
+                    class="form-control" placeholder="tipo de produto" value="">
+        </div>
+        <div class="form-group">
+                <input type="text" name="description" id="description-product" tabindex="1"
+                    class="form-control" placeholder="Description" value="">
+        </div>
+        <div class="form-group">
+                <input type="text" name="short_desc" id="short_desc-product" tabindex="1"
+                    class="form-control" placeholder="Short Description" value="">
+        </div>
+        <div class="form-group">
+                <input type="number" name="stock" id="stock-product" tabindex="1"
+                    class="form-control" placeholder="quantidade" value="">
+        </div>
+        <div class="form-group">
+                <input type="number" name="original_price" id="original_price-product" tabindex="1"
+                    class="form-control" placeholder="Original Price" value="">
+        </div>
+        <div class="form-group">
+                <input type="number" name="sale_price" id="sale_price-product" tabindex="1"
+                    class="form-control" placeholder="Sale Price" value="">
+        </div>
+        <div class="form-group">
+            <select multiple onchange="getSelectValues(document.getElementsByTagName('select')[0])">
+                {%  for id,name in list %}
+                <option value="{{id}}">{{name}}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+        </div>
+        <div>
+            <input type="file" name="image" id="image" accept="image/*">
+        </div>
+        <div class="form-group">
+            <input type="hidden" id="crafters" name="crafters" value="">
+            <input type="submit" name="submit" id="submit-product" tabindex="1"
+                class="form-control" placeholder="submit" value="add_product">
+        </div>
+    </form>
+</div>
+<script src="{% static 'js/select.js' %}"></script>
+{% endblock %}

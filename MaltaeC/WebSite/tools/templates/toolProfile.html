@@ -1,0 +1,289 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+    <!-- Personalized CSS -->
+    <link href="{% static 'css/WebSite/utilizadores/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'css/WebSite/tools/viewTool.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+{% include "users/common/header.html" %}
+<br>
+<div id="toolProfileContainer" class="container">
+    <div class="row">
+        <div id="picContainer" class="col-sm-4"><!--Pic e nome-->
+            <label class="title">{{tool.name}}</label>
+            <img id="toolImg" style="width: 250px; height: 250px;" class="img-circle img-responsive" src="../{{tool.imageUrl}}" alt="ToolImage" />
+        </div><!--close pic e nome-->
+        <div id="toolInfo" class="col-sm-4"><!--Tool info-->
+            <i class="material-icons register-icons">create</i>
+            <label>Descrição:</label>
+            <br>
+            <p>{{tool.description}}</p>
+            <i class="material-icons register-icons">money</i>
+            <label>Preço:</label>
+            <p>{{tool.price}} €/hora</p>
+        </div><!--close Tool info-->
+        <div id="userInfo" class="col-sm-4"><!--User info-->
+            <i class="material-icons register-icons">person</i>
+            <label class="nome">Artista:</label>
+            <br>
+            <img id="userImg" style="width: 30px; height: 30px;" class="img-circle img-responsive" src="../{{user.picUrl}}" alt="ToolImage" />
+            <a href="/utilizadores/perfil?id={{user.id}}">{{user.name}}</a>
+            <br>
+            <br>
+            <i class="material-icons register-icons">phone</i>
+            <label class="nome">+Info./Contacto:</label>
+            <p>{{user.phoneNumber}}</p>
+			<p>{{user.email}}</p>
+            <i class="material-icons register-icons">place</i>
+            <label class="nome">Localização:</label>
+            <div id="toolMap"></div>
+        </div><!--close User info-->
+    </div>
+</div>
+{% include "users/common/footer.html" %}
+</body>
+<script>
+    function initMap() {
+        userLatitude = 0.0;
+        userLongitude = 0.0;
+
+        {% if user.criativo %}
+        var latStrs = '{{user.criativo.latitude}}'.split(",");
+        var latStr = latStrs[0]+'.'+latStrs[1];
+        var lonStrs = '{{user.criativo.longitude}}'.split(",");
+        var lonStr = lonStrs[0]+'.'+lonStrs[1];
+        userLatitude = parseFloat(latStr);
+        userLongitude = parseFloat(lonStr);
+        {% endif %}
+        {% if user.artesao %}
+        var latStrs = '{{user.artesao.latitude}}'.split(",");
+        var latStr = latStrs[0]+'.'+latStrs[1];
+        var lonStrs = '{{user.artesao.longitude}}'.split(",");
+        var lonStr = lonStrs[0]+'.'+lonStrs[1];
+        userLatitude = parseFloat(latStr);
+        userLongitude = parseFloat(lonStr);
+        {% endif %}
+        console.log(userLatitude)
+        var uluru = {lat:userLatitude, lng: userLongitude};
+        var map = new google.maps.Map(document.getElementById('toolMap'), {
+            zoom: 10,
+            center: uluru,
+            styles:[
+    {
+        "featureType": "all",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "weight": "2.00"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#9c9c9c"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#eeeeee"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#7b7b7b"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#46bcec"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#c8d7d4"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#070707"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    }
+]
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvanTO8uzZXVE466u1cT4PdMD7nn-jtKA&callback=initMap">
+</script>
+
+</html>
+
+
+
+
+
+
+

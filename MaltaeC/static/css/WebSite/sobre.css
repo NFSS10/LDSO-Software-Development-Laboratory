@@ -1,0 +1,68 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.info {
+     width: 80%;
+	margin: 0 auto;
+}
+
+
+
+#logoImg
+{
+	padding-top: 100px;
+	height: 256px;
+	width: auto;
+}
+
+
+#apoioImg
+{
+	max-width: 100%;
+    height: auto;
+    width: auto;
+
+}
+
+
+.tituloDestaque
+{
+	font-size: 100px;
+	font-weight: bold;
+}
+
+
+.tituloTexto
+{
+	font-size: 20px;
+}
+
+.textoDestaque
+{
+	font-size: 17px;
+	font-weight: bold;
+	padding-bottom: 15px;
+	text-align: justify;
+}
+
+
+.texto
+{
+	text-align: justify;
+}
+
+.textoIntro
+{
+	padding-bottom: 8px;
+	text-align: justify;
+}
+
+
+.textoApoio
+{
+	padding-top: 150px;
+	font-size: 20px;
+}

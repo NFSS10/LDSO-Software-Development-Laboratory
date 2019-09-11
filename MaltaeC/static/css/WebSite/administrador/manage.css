@@ -1,0 +1,40 @@
+.container {
+    margin: 0 auto;
+}
+body {
+    padding-top: 90px;
+    font-family: 'Work Sans', sans-serif;
+}
+section#weird-header-section-fix-of-precious-group-fix {
+    padding-top: 80px;
+}
+
+
+
+
+.tituloAdmin
+{
+	font-size: 40px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.linhaDivisao{
+	border-top: 1px solid #8c8b8b;
+	width: 50%;
+}
+
+
+.subDivTitulo
+{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 25px;
+}
+
+
+.containerPagina
+{
+ margin: auto; max-width: 720px;
+}

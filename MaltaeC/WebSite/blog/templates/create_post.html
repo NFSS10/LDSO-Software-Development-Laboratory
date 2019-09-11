@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+h1 {
+    margin-top: 0px;
+    margin-bottom: 1em;
+}
+</style>
+
+
+<div class="padding-top">
+<h1>Adicionar Novo Post</h1>
+    <form id="add_post" action="register_post" method="post" enctype="multipart/form-data" role="form">
+
+        {% csrf_token %}
+        {{form}}
+        <div class="form-group">
+                <input type="text" name="title" id="post-title" tabindex="1"
+                    class="form-control" placeholder="Título" value="">
+        </div>
+        <div class="form-group">
+                <textarea class="form-control" rows="6" name="text" id="post-content" placeholder="Escrever Texto"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="file" name="image1" id="post-image1" tabindex="1"
+                class="form-control"  value="Imagem1">
+        </div>
+        <div class="form-group">
+            <input type="file" name="image2" id="post-image2" tabindex="1"
+                class="form-control" value="Imagem2">
+        </div>
+        <div class="form-group">
+            <input type="file" name="image3" id="post-image3" tabindex="1"
+                class="form-control"  value="Imagem3">
+        </div>
+        <div class="form-group">
+            <input type="file" name="image4" id="post-image4" tabindex="1"
+                class="form-control" value="Imagem4">
+        </div>
+        <div class="form-group">
+            <input type="submit" name="submit" id="submit-post" tabindex="1"
+                class="form-control"  value="Publicar Post">
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,517 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <link href="{% static 'users/css/viewProfile.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+	<!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/utilizadores/profile.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+	{% include "users/common/header.html" %}
+	<br>
+    <div id="profileContainer" class="container" >
+        {% if user.is_authenticated and user.is_staff %}
+                    <button style="width: 100%" type="button" class="btn btn-default" onclick="formAddEntrevista.submit();">Adicionar entrevista</button>
+            {% if userInfo.type == "criativo" or userInfo.type == "artesao" %}
+                {% if userInfo.is_active == False %}
+                    <button  style="width: 100%"  type="button" class="btn btn-default" onclick="formArtAprovUser.submit();">Validar</button>
+                {% endif %}
+                {% if userInfo.reprovado == False %}
+                    <button  style="width: 100%"  type="button" class="btn btn-default" onclick="formArtReprovUser.submit();">Reprovar</button>
+                {% endif %}
+                <button  style="width: 100%"  type="button" class="btn btn-default " onclick="formArtBanirUser.submit();">Banir</button>
+            {% endif %}
+            <form id="formAddEntrevista" method="post" action="/administrador/criarEntrevista">
+                {% csrf_token %}
+                <input type="hidden" name="idEntrevista" value="{{ userInfo.id }}" />
+            </form>
+            <form id="formArtAprovUser" method="post" action="/administrador/aprovarUser">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ userInfo.id }}" />
+            </form>
+            <form id="formArtReprovUser" method="post" action="/administrador/reprovarUser">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ userInfo.id }}" />
+            </form>
+            <form id="formArtBanirUser" method="post" action="/administrador/banirUser">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ userInfo.id }}" />
+            </form>
+        {% endif %}
+
+        {%ifnotequal entrevista "noEntrevista"%}
+            <button style="width:100%;" type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ver entrevista</button>
+
+            <!-- Modal -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog custom-class modal-lg">
+
+                    <!-- Modal content-->
+                    <div  class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <label class="modal-title">Entrevista</label>
+                        </div>
+                        <div class="modal-body">
+                            {% autoescape off %}
+                                {{ entrevista.conteudoEntrevista }}
+                            {% endautoescape %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {%endifnotequal%}
+        {%if user.is_authenticated and userInfo.id == user.id%}
+        <div>
+            <a href="/utilizadores/editProfile">
+                <button style="width:100%;" class="btn btn-default"><label>Edit Profile</label></button>
+            </a>
+        </div>
+        {%endif%}
+        <div id="userInfo" class="row"> <!-- first row -->
+            <div class="col-sm-3">
+                <img src="../{{userInfo.picUrl}}" class="img-circle img-responsive" alt="Imagem de perfil" style="width:200px;height:200px;margin: 0 auto;">
+                <br>
+                <div id="name">
+                    <label class="title">{{userInfo.name}}</label>
+                </div>
+                <br>
+                <i class="material-icons register-icons">email</i>
+                <label>Email:</label>
+                <label>{{userInfo.email}}</label>
+                <br>
+                <br>
+                <i class="material-icons register-icons">phone</i>
+                <label>Contacto:</label>
+                <label>{{userInfo.phoneNumber}}</label><br><br>
+                {%if userInfo.artesao or userInfo.criativo%}
+                    <i class="material-icons register-icons">content_paste</i>
+                    <label>Categorias:</label>
+                    {%if listaCategorias != "noCategorias"%}
+                        {%for categoria in listaCategorias%}
+                            <label>{{categoria}} </label>
+                        {%endfor%}
+                        <br>
+                        <br>
+                    {%endif%}
+                {%endif%}
+            </div>
+            <div class="midle col-sm-6">
+                <i class="material-icons register-icons">edit</i>
+                <label>Biografia:</label>
+                <br>
+                {%if userInfo.bio == ""%}
+                <textarea readonly>A biografia deste Utilizador está vazia</textarea>
+                {%else%}
+                <textarea readonly>{{userInfo.bio}}</textarea>
+                {%endif%}
+                <br>
+                <br>
+                <i class="material-icons register-icons">place</i>
+                <label>Localização:</label>
+                {%if userInfo.utilizador%}
+                    <br><label>{{userInfo.utilizador.adress}}</label><br>
+                {%else%}
+                    <div id="mapDiv">
+                    </div>
+                {%endif%}
+            </div>
+            <div class="col-sm-3"> <!--MORE INFO-->
+                <i class="material-icons register-icons">event_note</i>
+                <label>Eventos:</label>
+                <br>
+                {%ifequal eventsList "noEvents"%}
+                    <p>Este utilizador não tem eventos agendados</p>
+                {%else%}
+                    <div class="col-md-12"> <!--Carrossel 1-->
+                        <div id="Carousel" class="carousel slide">
+                            <!-- Carousel items -->
+                            <div class="carousel-inner">
+                                {%for event in eventsList%}
+                                    <div class="item {% if forloop.counter0 == 0%}active{% endif %}">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: center;">
+                                                <a href="/eventos/{{event.id}}" class="thumbnail">
+                                                    <li class="crop">
+                                                        <img class="carouselImg" src="../..{{ event.images.image1.url }}" alt="Image" style="max-width:100%;">
+                                                    </li>
+                                                    <label class="eventoNome">{{event.name}}</label>
+                                                    <br>
+                                                    <label class="eventoData">{{event.date_initial}}</label>
+
+                                                </a>
+                                            </div>
+                                        </div><!--.row-->
+                                    </div><!--.item-->
+                                {%endfor%}
+                            </div><!--.carousel-inner-->
+                            <a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
+                            <a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
+                        </div><!--.Carousel-->
+                    </div><!--Carrossel 1 END-->
+                {%endifequal%}
+                <i class="material-icons register-icons">gavel</i>
+                <label>Ferramentas:</label>
+                <br>
+                {%ifequal tools "noTools"%}
+                    <p>Este utilizador não ferramentas</p>
+                {%else%}
+                <div class="col-md-12"> <!--Carrossel 2-->
+                    <div id="Carousel2" class="carousel slide">
+                        <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            {%for tool in tools%}
+                                <div class="item {% if forloop.counter0 == 0%}active{% endif %}">
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align: center">
+                                            <a href="/ferramentas/viewTool?id={{tool.id}}" class="thumbnail">
+                                                <li class="crop">
+                                                    <img src="../{{tool.imageUrl}}" alt="Image" style="max-width:100%;">
+                                                </li>
+                                                <label class="ferramentaNome">{{tool.name}}</label>
+                                                <br>
+                                                <label class="ferramentaPreco">{{tool.price}} €/h</label>
+                                            </a>
+                                        </div>
+                                    </div><!--.row-->
+                                </div><!--.item-->
+                            {%endfor%}
+                        </div><!--.carousel-inner-->
+                        <a data-slide="prev" href="#Carousel2" class="left carousel-control">‹</a>
+                        <a data-slide="next" href="#Carousel2" class="right carousel-control">›</a>
+                    </div><!--.Carousel-->
+                </div><!--Carrossel 2 END-->
+                {%endifequal%}
+            </div><!--MORE INFO END-->
+
+        </div>
+        <hr>
+        <br>
+		{%if userInfo.type == "criativo" or userInfo.type == "artesao"%}
+        <div class="row"><!-- video -->
+                {%if userInfo.videoUrl != ""%}
+                    <iframe style="width: 100%; height: 550px"
+                            src="{{user.videoUrl}}">
+                    </iframe>
+                {%endif%}
+        </div>
+        {%if images != "noImages"%}
+        <div class="" style="width: 100%"><!--gallery-->
+
+                <div class="container gal-container" style="width: 100%">
+
+                    {%for image in images%}
+                        {%if forloop.counter == 1%}
+                            <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                                <div class="box">
+                                    <a href="#" data-toggle="modal" data-target="#{{forloop.counter}}">
+                                        <img src="../{{image.imgUrl}}">
+                                    </a>
+                                    <div class="modal fade" id="{{forloop.counter}}" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                <div style="word-wrap: break-word;" class="modal-body">
+                                                    <img src="../{{image.imgUrl}}">
+                                                </div>
+                                                <div class="col-md-12 description">
+                                                    <h4>{{user.name}} Image</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {%else%}
+                            <div class="col-md-4 col-sm-6 co-xs-12 gal-item">
+                                <div class="box">
+                                    <a href="#" data-toggle="modal" data-target="#{{forloop.counter}}">
+                                        <img src="../{{image.imgUrl}}">
+                                    </a>
+                                    <div class="modal fade" id="{{forloop.counter}}" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                <div class="modal-body">
+                                                    <img src="../{{image.imgUrl}}">
+                                                </div>
+                                                <div class="col-md-12 description">
+                                                    <h4>{{user.name}} Image</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {%endfor%}
+
+                </div>
+
+        </div>
+        {%endif%}
+		{%endif%}
+	</div>
+
+	<section>
+	{% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+
+    <!-- Google Map -->
+    <script>
+      function initMap() {
+          userLatitude = 0.0;
+          userLongitude = 0.0;
+
+		{% if userInfo.criativo %}
+			var latStrs = '{{userInfo.criativo.latitude}}'.split(",");
+			var latStr = latStrs[0]+'.'+latStrs[1];
+			var lonStrs = '{{userInfo.criativo.longitude}}'.split(",");
+			var lonStr = lonStrs[0]+'.'+lonStrs[1];
+			userLatitude = parseFloat(latStr);
+			userLongitude = parseFloat(lonStr);
+		{% endif %}
+		{% if userInfo.artesao %}
+			var latStrs = '{{userInfo.artesao.latitude}}'.split(",");
+			var latStr = latStrs[0]+'.'+latStrs[1];
+			var lonStrs = '{{userInfo.artesao.longitude}}'.split(",");
+			var lonStr = lonStrs[0]+'.'+lonStrs[1];
+			userLatitude = parseFloat(latStr);
+			userLongitude = parseFloat(lonStr);
+		{% endif %}
+		var myLatLng = {lat:userLatitude, lng: userLongitude};
+
+        var map = new google.maps.Map(document.getElementById('mapDiv'), {
+          zoom: 14,
+          center: myLatLng,
+            styles:[
+    {
+        "featureType": "all",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "weight": "2.00"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#9c9c9c"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#f2f2f2"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "all",
+        "stylers": [
+            {
+                "saturation": -100
+            },
+            {
+                "lightness": 45
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#eeeeee"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#7b7b7b"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "all",
+        "stylers": [
+            {
+                "color": "#46bcec"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#c8d7d4"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#070707"
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    }
+]
+
+        });
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnZC9JhRA88UOd2yTiLQeWbxfvYm7A_vc&callback=initMap"></script>
+
+
+</html>
+
+
+
+
+
+
+

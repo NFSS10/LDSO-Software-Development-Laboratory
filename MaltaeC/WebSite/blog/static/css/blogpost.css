@@ -1,0 +1,172 @@
+@font-face{
+font-family:"Futura Plus W08";
+font-style:normal;
+font-weight:200;
+src:url("http://fast.fonts.net/dv2/3/8d76f836-815d-41a8-aa79-4ce65b9f1cef.woff?d44f19a684109620e484157ba490e818e7e46d613b199e1ec8a2ede075265cbe81619d8bad4371622f5b0a233a237d5f46e2d67a037bb8aa1a6980377207c17addbbe8eb76839835de16f7390574814ffabb7fac22cd57cd5ee0316cc0adf41fa58ba7efed38635622bf56947a3ade4ea46bc14e59f5119c3a0b14&projectId=e41fc062-deac-4680-8df2-fd565aca6fea") format('woff');}
+@font-face{
+font-family:"Futura Plus W08";
+font-style:normal;
+font-weight:400;
+src:url("http://fast.fonts.net/dv2/3/40780796-f5dd-4ccf-89d6-5e9feed1b4c3.woff?d44f19a684109620e484157ba490e818e7e46d613b199e1ec8a2ede075265cbe81619d8bad4371622f5b0a233a237d5f46e2d67a037bb8aa1a6980377207c17addbbe8eb76839835de16f7390574814ffabb7fac22cd57cd5ee0316cc0adf41fa58ba7efed38635622bf56947a3ade4ea46bc14e59f5119c3a0b14&projectId=e41fc062-deac-4680-8df2-fd565aca6fea") format('woff');}
+@font-face{
+font-family:"Futura Plus W08";
+font-style:normal;
+font-weight:100;
+src:url("http://fast.fonts.net/dv2/3/accdf66a-3ef9-40bd-a2d9-141ce67745a0.woff?d44f19a684109620e484157ba490e818e7e46d613b199e1ec8a2ede075265cbe81619d8bad4371622f5b0a233a237d5f46e2d67a037bb8aa1a6980377207c17addbbe8eb76839835de16f7390574814ffabb7fac22cd57cd5ee0316cc0adf41fa58ba7efed38635622bf56947a3ade4ea46bc14e59f5119c3a0b14&projectId=e41fc062-deac-4680-8df2-fd565aca6fea") format('woff');}
+
+
+img {
+  	display: block;
+  	max-width:600px;
+  	max-height:600px;
+  	width: auto;
+  	height: auto;
+	margin: auto;
+	margin-bottom: 2em;
+
+}
+
+#post {
+	font-size: 14px;
+	font-style: normal;
+	text-align: center;
+	width: 650px;
+	margin: auto;
+	color: #58595b;
+	margin-top: 6em;
+	margin-bottom: 11em;
+}
+
+#newpost {
+	font-style: normal;
+	font-weight: bold;
+	text-align: center;
+	width: 650px;
+	margin: auto;
+	color: #58595b;
+	margin-top: 1em;
+	margin-bottom: 3em;
+}
+
+#newpost a:hover, #postedit input:hover, #cancel_del a:hover, #newpost a:active, #postedit input:active, #cancel_del a:active {
+	background: rgba(0,0,0,0);
+	color: #a3c9dc;
+	text-decoration: underline;
+	border:none;
+	outline: none;
+}
+
+#date {
+	font-family: "Futura Plus W08";
+	font-weight: 100;
+	font-size: 90%;
+}
+
+#delete, #postedit, #confirm_del, #cancel_del {
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+#postedit input {
+	background-color: white;
+	font-style: normal;
+	text-align: center;
+	border: none;
+	color: #58595b;
+	font-weight: bold;
+	margin-top:6px;
+}
+
+#delete > a {
+	text-transform: capitalize;
+	text-decoration: none;
+	font-style: normal;
+	text-align: center;
+	margin: auto;
+	color: #58595b;
+	position: relative;
+}
+
+#delete a:hover , #confirm_del input:hover, #delete a:active, #confirm_del input:active {
+	background: rgba(0,0,0,0);
+	color: #ff8080;
+	text-decoration: underline;
+	border: none;
+	outline: none;
+}
+
+#confirm_del input {
+	background-color: white;
+	font-style: normal;
+	text-align: center;
+	border: none;
+	color: #58595b;
+	font-weight: bold;
+	margin-top: 6px;
+}
+
+#cancel_del a {
+	text-transform: capitalize;
+	background-color: white;
+	font-style: normal;
+	text-align: center;
+	border: none;
+	color: #58595b;
+	font-weight: bold;
+	margin-bottom:2em;
+	vertical-align: top;
+}
+
+#title {
+	font-family: "Futura Plus W08";
+	font-weight: 400;
+	font-size: 200%;
+	text-align: center;
+	margin: auto;
+}
+
+#text{
+	font-family: "Futura Plus W08";
+	font-weight: 200;
+	font-size: 130%;
+	margin: 1em;
+}
+
+#buttons, .modal-footer {
+	text-align: center;
+}
+
+.modal .modal-header {
+  border-bottom: none;
+  position: relative;
+}
+.modal .modal-header .btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.modal .modal-footer {
+  border-top: none;
+  padding: 0;
+}
+.modal .modal-footer .btn-group > .btn:first-child {
+  border-bottom-left-radius: 0;
+}
+.modal .modal-footer .btn-group > .btn:last-child {
+  border-top-right-radius: 0;
+}
+
+img {
+	filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
+  	filter: gray; /* IE6-9 */
+  	-webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+}
+
+img:hover {
+	filter: none;
+	-webkit-filter: grayscale(0%);
+}

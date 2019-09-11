@@ -1,0 +1,45 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+
+#custom-search-input
+{
+    margin: 0 auto;
+	font-family: 'Quicksand', sans-serif;
+    padding: 3px;
+    border: solid 1px #E4E4E4;
+    border-radius: 6px;
+    background-color: #fff;
+	width: 95%
+}
+
+#custom-search-input input
+{
+	font-family: 'Quicksand', sans-serif;
+    border: 0;
+    box-shadow: none;
+}
+
+#custom-search-input button
+{
+	font-family: 'Quicksand', sans-serif;
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 0 8px 0 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover
+{
+	font-family: 'Quicksand', sans-serif;
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input .glyphicon-search
+{
+	font-family: 'Quicksand', sans-serif;
+    font-size: 23px;
+}

@@ -1,0 +1,155 @@
+#main-container{
+    padding-top: 130px;
+}
+
+.page-content{
+    padding: 0 30px 0 30px;
+}
+
+.x-navigation li.active > a.active-tab {
+    background-color: rgb(140, 184, 202) !important;
+    color: #fff;
+}
+
+.x-navigation li.active > a.active-tab:hover {
+    padding-left: 15px;
+    background-color: rgb(140, 184, 202) !important;
+}
+
+.x-navigation li.active > a:active,
+.x-navigation li.active > a:hover,
+.x-navigation li.active > a:focus {
+    background-color: rgb(140, 184, 202) !important;
+    color: #fff;
+    padding-left: 15px;
+}
+
+.x-navigation li > ul li.active > a:hover {
+    padding-left: 30px;
+}
+
+div#map-admin{
+    height: 300px;
+}
+
+.pac-container {
+    z-index: 10000 !important;
+}
+
+/* Mapa Admin */
+
+#map-admin {
+    height: 400px;
+    width: 100%;
+    margin: 20px 0 50px 0;
+}
+.controls-map {
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    font-family: "Work Sans";
+    font-size: 15px;
+    font-weight: 300;
+    height: 29px;
+    margin-left: 17px;
+    margin-top: 10px;
+    outline: none;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+#pac-input{
+    height: 31px;
+    width: 250px;
+}
+
+#radius-input{
+    width: 100px;
+    height: 31px;
+    margin-top: 20px;
+    z-index: 1;
+    position: absolute;
+    right: 30px;
+
+}
+
+
+div#map-newMaker{
+    height: 300px;
+}
+
+div#map-newMaker > div{
+    height: 100px;
+}
+
+#map-newMaker {
+    height: 400px;
+    width: 100%;
+    margin: 20px 0 50px 0;
+}
+
+.controls-map:focus {
+    border-color: #4d90fe;
+}
+
+i.register-icons{
+    position: relative;
+    top: 32px;
+    left: 10px;
+}
+
+input[type="text"], .panel-login input[type="email"], input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+    padding-left: 38px;
+}
+
+.btn-add{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 30px;
+    text-align: center;
+    line-height: 28px;
+    color: rgb(255, 255, 255);
+    margin-left: 3px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(187, 187, 187);
+    border-image: initial;
+    border-radius: 10%;
+    transition: all 200ms ease;
+}
+
+.btn-add > i {
+    font-size: 18px;
+}
+
+input.btn-form-control {
+    background-color: #8f8f8f;
+}
+
+input.btn-form-control.btn-danger:hover,input.btn-form-control.btn-danger:focus {
+    background-color: #e04b4a;
+}
+
+input.btn-form-control.btn-success:hover,input.btn-form-control.btn-success:focus {
+    background-color: #95b75d;
+}
+
+i.material-icons.form-icons {
+    position: relative;
+    top: 32px;
+    left: 10px;
+}
+
+input.form-control.form-my-disabled{
+    color: #555555;
+}

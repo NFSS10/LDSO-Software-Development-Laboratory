@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% include "searchbar.html" %}
+	<div class="row">
+		<div class="hrSmall"><hr></div>
+
+		<div class="hrSmall"><hr></div>
+			<div class="row">
+				<div class="col-xs-6">
+					
+				</div>
+				<div class="col-xs-6">
+					
+				</div>
+			</div><!--closes shop shirts and albums row<-->
+		<div class="hrSmall"><hr></div>
+
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			{% for type in product_types %}
+			<div class="newGroup linkGroupBlack">
+				<p><strong>
+					{% if type|stringformat:"s" == 'Shirt' %}
+						Clothing brands
+					{% elif type|stringformat:"s" == 'Album' %}
+						Music artists
+					{% endif %}
+				</strong></p>
+					{% for parent in type.get_parents %}
+						<div class="hrSmall"><hr></div>
+						{% if type|stringformat:"s" == "Shirt" %}
+							<a href="{% url 'brand_detail' parent.get_slug %}">{{ parent.name }}</a>
+						{% elif type|stringformat:"s" == "Album" %}
+							<a href="{% url 'artist_detail' parent.get_slug %}">{{ parent.name }}</a>
+						{% endif %}
+					{% endfor %}
+			</div><!--ends newGroup-->			
+			{% endfor %}
+		</div><!--end col-xs-3 sidebar-->
+		<div class="col-xs-9">
+			{% for product in products %}
+				{% csrf_token %}
+				<!--<a href="../templates/products/product_page.html/{{product.pk}}">-->
+					<div class="no-gutter popup-gallery">
+						<div class="col-md-3 col-sm-6">
+
+								<div class="shop-box-caption">
+									<div class="shop-box-caption-content">
+										<div class="shop-name text-upper">
+										<a href="../../products/show-product{{product.pk}}">
+											<img class="img-responsive" src="../../media/{{product.image}}">{{ product.name }}</a>
+										</div>
+										<div class="shop-category">
+											<i class="flaticon-saving-pig"></i>
+											<p class="event-place">{{ product.original_price }}€</p>
+										</div>
+									</div>
+								</div>
+							<!--</a>-->
+						</div>
+					</div>
+			{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
+
+<!-- old image code here
+
+		<div class="col-xs-4">
+			<img style="max-height:100px" src="{{ MEDIA_URL }}/{{ shirt.get_default_image }}"></br>
+			<a href="{{ shirt.slug }}">{{ album.name }}</a>
+		</div>
+
+-->

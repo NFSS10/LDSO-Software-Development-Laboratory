@@ -1,0 +1,120 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">~
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+	<!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/administrador/manage.css' %}" rel="stylesheet">
+    <link href="{% static 'css/WebSite/administrador/mudarCarousel.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+	{% include "users/common/header.html" %}
+	<section id="weird-header-section-fix-of-precious-group-fix">
+	</section>
+	
+	<!--Conteudo da Pagina dentro de Info ...-->
+	<div class="info">
+
+        <h1 class="tituloAdmin">Administração</h1>
+        <div class="text-center">
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/mudarCarousel','self');">Alterar Imgs. Pág. Inicial</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/manage','self');">Novos Utilizadores</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/utilizadores/registo','self');">Registar Novo Utilizador</button>
+			<button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/reprovados','self');">Reprovados</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/desbanirUser','self');">Emails banidos</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/allUsers','self');">Todos os Utilizadores</button>
+            {% if user.is_superuser %}
+                <button type="button" class="btn btn-large btn-warning" onclick="window.open('/administrador/addAdmin','self');">Adicionar Admin</button>
+            {% endif %}
+        </div>
+        <hr class="linhaDivisao">
+        <div class="row containerPagina">
+                <!--------------------------------------->
+                <div class="row">
+                    <h2 class="subDivTitulo">Mudar Imagens da página inicial</h2>
+
+                    <div class="row">
+                        <h4>Tamanho mínimo das imagens recomendado: 1920x1080</h4>
+
+
+                        <form action="" method="POST" role="form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <img class="imgPreview" src="../{{carouselIMGs.img1}}">
+                                <input type="file" id="file1" accept="image/png, image/jpeg, image/gif" name="img1">
+                            </div>
+                            <div class="form-group">
+                                <img class="imgPreview" src="../{{carouselIMGs.img2}}">
+                                <input type="file" id="file2" accept="image/png, image/jpeg, image/gif" name="img2">
+                            </div>
+                            <div class="form-group">
+                                <img class="imgPreview" src="../{{carouselIMGs.img3}}">
+                                <input type="file" id="file3" accept="image/png, image/jpeg, image/gif" name="img3">
+                            </div>
+                            <div class="form-group">
+                                <img class="imgPreview" src="../{{carouselIMGs.img4}}">
+                                <input type="file" id="file4" accept="image/png, image/jpeg, image/gif" name="img4">
+                            </div>
+                            <div class="form-group">
+                                <img class="imgPreview" src="../{{carouselIMGs.img5}}">
+                                <input type="file" id="file5" accept="image/png, image/jpeg, image/gif" name="img5">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Alterações</button>
+                        </form>
+                    </div>
+
+                </div>
+                <!--------------------------------------->
+        </div>
+
+
+    </div>
+	{% include "users/common/footer.html" %}
+</body>
+
+
+	<!-- jQuery -->
+	<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	<!-- Plugin JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<!-- Theme JavaScript -->
+	<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+
+
+
+</html>
+
+
+
+
+
+
+

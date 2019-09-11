@@ -1,0 +1,261 @@
+@font-face {
+    font-family: "encodeSans";
+    src: url(../fonts/EncodeSans-Light.ttf) format("truetype");
+}
+
+a.aba { 
+    font-family: "encodeSans", Verdana, Tahoma;
+	font-size: 30px
+}
+
+a.aba:hover{ 
+	text-decoration: none;
+}
+
+a.active{
+	color: grey;
+	text-decoration: none;
+}
+
+.main-heading{
+	margin-top: -40px;
+	font-family: "encodeSans", Verdana, Tahoma;
+	font-size: 20px
+}
+
+.panel-heading{
+	text-align: center;
+}
+
+label{
+	font-weight: normal !important;
+	font-family: "encodeSans", Verdana, Tahoma;
+	margin-top: 15px;
+}
+
+.inputButton
+{
+	margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+	width: 100%;
+	font-family: "encodeSans", Verdana, Tahoma;
+}
+
+#infoForm .material-icons{
+	position: relative;
+    top: 5px;
+}
+#infoForm{
+	border: 0 auto;
+	width: 70%;
+}
+
+#imgDiv{
+  display: table;
+  margin: 0 auto;
+  align: center;
+}
+
+.fileUploadBtn{
+	position: relative;
+	left: 1px;
+}
+
+.btn{
+	font-family: "encodeSans", Verdana, Tahoma;
+}
+
+hr{
+	color: grey;
+	opacity: 0.5;
+	width: 85%;
+}
+
+.title{
+	font-size: 20px;
+}
+
+img{
+	display:block;
+    margin:auto;
+	margin-bottom: 15px;
+}
+
+.moldura {
+    width:  125px;
+    height: 125px;
+	overflow: hidden;
+	padding: 10px;
+	
+}
+
+.container {
+     width: 80%;
+	margin: 0 auto;
+}
+
+.panel-login{
+	width: 90%;
+	margin: 0 auto:
+}
+
+.image-preview-input {
+    position: relative;
+    overflow: hidden;
+    margin: 0px;    
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;    
+}
+.image-preview-input input[type=file] {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
+}
+.image-preview-input-title {
+    margin-left:2px;
+}
+
+
+
+.carousel {
+    margin-bottom: 0;
+    padding: 0 40px 30px 40px;
+}
+/* The controlsy */
+.carousel-control {
+	left: -12px;
+    height: 40px;
+	width: 40px;
+    background: none repeat scroll 0 0 #222222;
+    border: 4px solid #FFFFFF;
+    border-radius: 23px 23px 23px 23px;
+    margin-top: 90px;
+}
+.carousel-control.right {
+	right: -12px;
+}
+/* The indicators */
+.carousel-indicators {
+	right: 50%;
+	top: auto;
+	bottom: -10px;
+	margin-right: -19px;
+}
+/* The colour of the indicators */
+.carousel-indicators li {
+	background: #cecece;
+}
+.carousel-indicators .active {
+background: grey;
+}
+.crop {
+	align:center;
+	 height: 150px;
+	 width: 100%;
+	 overflow: hidden;
+  list-style-type: none;
+}
+
+.deleteToolButtoninput{
+	width: 100%;
+}
+.carouselImg{
+	height: auto;
+	width: 150px;
+	height:100%;
+}
+
+.toolContainer{
+	word-wrap: break-word;
+	text-align: center;
+}
+
+/*Google maps style*/
+#map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+
+      #infowindow-content .title {
+        font-weight: bold;
+      }
+
+      #infowindow-content {
+        display: none;
+      }
+
+      #map #infowindow-content {
+        display: inline;
+      }
+
+      .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+
+      #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+
+      .pac-controls label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+      #pac-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }

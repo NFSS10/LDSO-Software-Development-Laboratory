@@ -1,0 +1,24 @@
+<{% extends 'base.html' %}
+
+{% block content %}
+<div class="padding-top">
+<table style="width:100%">
+  <tr>
+    <th>Purchase</th>
+    <th>Estado</th>
+
+  </tr>
+    {% for purchase in purchases %}
+  <tr>
+     <td><a href="{% url 'purchase:show_purchase' purchase.pk %}">Purhcase:{{purchase.pk }}</a></td>
+
+      <td>{{purchase.estado}}</td>
+
+  </tr>
+
+{% endfor %}
+    <hr>
+
+</table>
+</div>
+{% endblock %}

@@ -1,0 +1,175 @@
+<!-- Modal para editar e adicionar eventos do perfil-master-eventos.html -->
+<!-- ADD NEW ADMINISTRATOR -->
+
+<div class="modal fade" id="addEvent" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Novo Evento</h4>
+            </div>
+            <div class="modal-body">
+                <form name = "event-form" id="event-form" action="" method="post"
+                      role="form" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                         <input id="image" type="file" class="" name="image">
+                    </div>
+
+                    <div class="form-group">
+                        <i class="material-icons register-icons">event</i>
+                        <input type="text" name="name" id="name_event" tabindex="1"
+                               class="form-control" placeholder="Nome">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons register-icons">location_on</i>
+                        <input type="text" name="local" id="local_event" tabindex="1"
+                               class="form-control" placeholder="Local" value="">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons register-icons">person</i>
+                        <input type="text" name="tutor" id="tutor_event" tabindex="2"
+                               class="form-control" placeholder="Tutor" required>
+                    </div>
+
+                    <div class="form-group">
+                        <i class="material-icons register-icons">description</i>
+                        <input type="text" name="about" id="about_event" tabindex="2"
+                               class="form-control" placeholder="Descrição do evento" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tipo de evento</label>
+                        <select name="type" title="Events type" id="type" class="form-control" tabindex="2" required>
+                            {% for type in types %}
+                                <!-- para os casos "exposição" e "apresentação" estes não são guardados com acentos na DB -->
+                                {% if type.event_name == "Exposicao" %}
+                                    <option value="{{type.id}}"> Exposição</option>
+                                {% elif type.event_name == "Apresentacao" %}
+                                    <option value="{{type.id}}"> Apresentação</option>
+                                {% else %}
+                                    <option value="{{type.id}}"> {{type.event_name}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <i class="material-icons register-icons">group</i> -->
+                        <input type="number" name="max_participants" min="1" max="200" id="max_participants_event"
+                               tabindex="4" class="form-control" placeholder="Número máximo de participantes" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de início</label>
+                        <input  placeholder="12/01/2017" type="datetime-local" name="date_initial"  id="initial_date_event"
+                                class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Data de fim</label>
+                        <input placeholder="12/01/2017" type="datetime-local" name="date_final"  id="final_date_event" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" name="add-event-submit" id="add-event-submit" tabindex="4"
+                                       class="form-control btn btn-login" value="Adicionar novo evento">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="editEvent" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Alterar Evento</h4>
+            </div>
+            <div class="modal-body">
+                <form name = "event-form" id="event-form" action="" method="post"
+                      role="form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <i class="material-icons register-icons">event</i>
+                        <input type="text" name="name" id="name_event" tabindex="1"
+                               class="form-control" placeholder="Nome" value="{{object_list.0}}">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons register-icons">location_on</i>
+                        <input type="text" name="local" id="local_event" tabindex="1"
+                               class="form-control" placeholder="Local" value="">
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons register-icons">person</i>
+                        <input type="text" name="tutor" id="tutor_event" tabindex="2"
+                               class="form-control" placeholder="Tutor" required>
+                    </div>
+                    <div class="form-group">
+                        <i class="material-icons register-icons">description</i>
+                        <input type="text" name="about" id="about_event" tabindex="2"
+                               class="form-control" placeholder="Descrição do evento" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tipo de evento</label>
+                        <select name="type" title="Events type" id="type" class="form-control" tabindex="2" required>
+                            {% for type in types %}
+                                <!-- para os casos "exposição" e "apresentação" estes não são guardados com acentos na DB -->
+                                {% if type.event_name == "Exposicao" %}
+                                    <option value="{{type.id}}"> Exposição</option>
+                                {% elif type.event_name == "Apresentacao" %}
+                                    <option value="{{type.id}}"> Apresentação</option>
+                                {% else %}
+                                    <option value="{{type.id}}"> {{type.event_name}}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <!-- <i class="material-icons register-icons">group</i> -->
+                        <input type="number" name="max_participants" min="1" max="200" id="max_participants_event"
+                               tabindex="4" class="form-control" placeholder="Número máximo de participantes" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de início</label>
+                        <input  placeholder="12/01/2017" type="datetime-local" name="date_initial"  id="initial_date_event"
+                                class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Data de fim</label>
+                        <input placeholder="12/01/2017" type="datetime-local" name="date_final"  id="final_date_event" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" name="add-event-submit" id="add-event-submit" tabindex="4"
+                                       class="form-control btn btn-login" value="Adicionar novo evento">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+
+    </div>
+</div>

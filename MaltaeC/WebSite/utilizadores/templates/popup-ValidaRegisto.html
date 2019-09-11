@@ -1,0 +1,47 @@
+<!-- ADD NEW ADMINISTRATOR -->
+
+<div class="modal show" id="addAdmin" role="dialog">
+    <div class="modal-dialog">
+
+    <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Registo</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group">
+					
+					{% if success == 'success' %}
+                        <p>Criou a sua conta com sucesso!</p>
+                    {% elif success == 'invalid' %}
+						{% if erroMsg %}
+							<p>Coiso e tal erro: {{ erroMsg }}</p>
+						{% endif %}
+                        <p>Por favor preencha toda a informação de modo válido</p>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="center-div">
+                            {% if success == 'success' %}
+                                <a href="../" id="btn-visit-shop" class="btn btn-primary btn-xl text-upper">Concluir</a>
+                            {% elif success == 'invalid' %}
+                                <a href="../utilizadores/registo" id="btn-visit-shop2" class="btn btn-primary btn-xl text-upper">Concluir</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>

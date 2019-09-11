@@ -1,0 +1,107 @@
+{% load staticfiles %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title>Malta&Cª</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'makers/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="{% static 'makers/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Hind+Guntur" rel="stylesheet">
+    <script src="jquery-3.2.1.min.js"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="{% static 'makers/fonts/icons/flaticons/flaticon.css' %}">
+    <!-- Plugin CSS -->
+    <link href="{% static 'makers/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">~
+    <!-- Header Theme... CSS -->
+    <link href="{% static 'makers/css/creative.css' %}" rel="stylesheet">
+    <link href="{% static 'makers/css/scrolling-nav.css' %}" rel="stylesheet">
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://cdn.phpoll.com/css/animate.css" rel="stylesheet">
+
+
+
+
+    <!-- Personalized CSS -->
+	<link href="{% static 'css/WebSite/administrador/manage.css' %}" rel="stylesheet">
+    <link href="{% static 'css/WebSite/administrador/desbanirUser.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+{% include "users/common/header.html" %}
+<section id="weird-header-section-fix-of-precious-group-fix">
+</section>
+    <div class="container">
+		<h1 class="tituloAdmin">Administração</h1>
+			<div class="text-center">
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/mudarCarousel','self');">Alterar Imgs. Pág. Inicial</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/manage','self');">Novos Utilizadores</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/utilizadores/registo','self');">Registar Novo Utilizador</button>
+			<button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/reprovados','self');">Reprovados</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/desbanirUser','self');">Emails banidos</button>
+            <button type="button" class="btn btn-large btn-primary" onclick="window.open('/administrador/allUsers','self');">Todos os Utilizadores</button>
+            {% if user.is_superuser %}
+                <button type="button" class="btn btn-large btn-warning" onclick="window.open('/administrador/addAdmin','self');">Adicionar Admin</button>
+            {% endif %}
+        </div>
+			<hr class="linhaDivisao">
+        <table id="emailsTable" class="display">
+            <thead>
+            <tr>
+                <th>Email Banido</th>
+                <th>Unban</th>
+            </tr>
+            </thead>
+            <tbody>
+            {%for email in emails%}
+                <tr>
+                    <td>{{email.email}}</td>
+                    <td>
+                        <form>
+                            {% csrf_token %}
+                            <input type="hidden" name="email" value="{{email.email}}">
+                            <input type="submit" formmethod="POST" value="Unban">
+                        </form>
+                    </td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+    </div>
+{% include "users/common/footer.html" %}
+</body>
+
+
+<!-- jQuery -->
+<script src="{% static 'makers/vendor/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="{% static 'makers/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<!-- Theme JavaScript -->
+<script src="{% static 'makers/js/scrolling-nav.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#emailsTable').DataTable();
+    } );
+</script>
+</html>
+
+
+
+
+
+
+

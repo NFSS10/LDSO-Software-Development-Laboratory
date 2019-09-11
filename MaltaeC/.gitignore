@@ -1,0 +1,16 @@
+*.pyc
+*.pyc
+*.pyc
+*.pyc
+WebSite/utilizadores/__pycache__/views.cpython-36.pyc
+*.pyc
+media/events/test*
+media/test*
+MaltaCProject/
+django
+requirements
+sh_scripts/
+.gitlab-ci.yml
+*/*.pyc
+.idea/
+*/migrations/*

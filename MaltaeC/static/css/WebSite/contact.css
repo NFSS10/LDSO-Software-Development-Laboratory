@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Quicksand:400,300);
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.info {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#contactForm
+{
+	padding-top: 100px;
+	width: 50%;
+	margin: 0 auto;
+}

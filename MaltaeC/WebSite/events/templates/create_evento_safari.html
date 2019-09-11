@@ -1,0 +1,194 @@
+evento{% load staticfiles %}
+<html lang="en">
+
+<!-- Chamada dos headers comuns -->
+<head>
+  <!-- Chamada dos headers comuns -->
+  {% include "commonhead.html" %}
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="{% static 'css/createevento.css' %}"></link>
+  <link rel="stylesheet" href="{% static 'css/bootstrap-timepicker.css' %}"></link>
+  <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}"></link>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  	{% include "users/common/header.html" %}
+  <section style="margin-left: 0px;">
+  	<div class="text-center">
+      <h1 style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; color: rgb(200,200,200)"
+      >Formulário de criação de evento</h1>
+    	<hr/>
+      {% if erros %}
+      <br />
+      <div class="container alert alert-info alert-dismissable" style="width: 50%;padding: 0;">
+           <a class="panel-close close" style="right:2%" data-dismiss="alert">×</a>
+        {% for e in erros %}
+           <p>
+             <b>{{ e }}</b>
+           </p>
+        {% endfor %}
+       </div>
+      {% endif %}
+      <br/>
+
+       <div id="queryTest" class="container" style="width: 90%;padding: 0;
+       border-style: solid; border-radius: 5%; background-color: rgba(240,240,240,0.5)">
+      <!--     <div class="alert alert-info alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fa fa-coffee"></i>
+            This is an <strong>.alert</strong>. Use this to show important messages to the user.
+          </div> -->
+          <h3>Informação do evento</h3>
+          <form class="form-horizontal" role="form" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label class="control-label">Que nome dá ao seu evento?</label>
+              <div class="eventoform">
+                <input id="nome" name="name" placeholder="Dê um nome único" class="form-control" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Como vai ser o evento?</label>
+              <div class="eventoform">
+                <textarea id="about" placeholder="Detalhe aqui o seu evento" name="about" style="height: 250px" class="form-control" type="text"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label">Escolha o local do seu evento:</label>
+              <div class="eventoform">
+                <input id="local" name="local" class="form-control" value="{{ event.local }}" type="text">
+                <div id="map" style="width:50%;height:50%; margin-top: 20px"></div>
+                <input id="latitude" name="latitude" value="null" type="hidden"/>
+                <input id="longitude" name="longitude" value="null" type="hidden"/>
+              </div>
+            </div>
+            <div class="form-group eventoform">
+              <label class="control-label">Como categoriza o seu evento? Exemplos: <span class="label label-default">Oficina</span> ou <span class="label label-default">Workshop</span></label>
+              <input style="margin-left: 6%;" name="type" id="type" placeholder="Workshop" name="type" title="Events type" id="type" class="form-control" tabindex="2" ></input>
+            </div>
+            <div style="padding-top: 10px" class="form-group">
+              <div class="eventoform">
+                <label class="control-label">Tutores de evento:</label>
+                <div class="input-group">
+                    <input id="tutor" name="tutor" class="form-control" placeholder="Pesquisar tutor" type="text">
+                    <div class="input-group-btn">
+                      <a id="tutorButtonAdd" class="btn btn-info btn-md" style="height: 32px">
+                        <i class="glyphicon glyphicon-plus"></i>
+                      </a>
+                    </div>
+
+                </div>
+                <div style="overflow-y:scroll; height:80px; background-color:rgb(255,255,255);">
+                  <ul id="selectedTutors" name="selectedTutors" class="list-group">
+                      <li id="placeholderli" style="color: rgb(128,128,128)" class="list-group-item">Use a caixa de texto acima para colocar nomes</li>
+                  </ul>
+                </div>
+                <input type="hidden"  name="listTutor" id="listTutor" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">Quando vai dar ínicio?</label>
+                  <div>
+                    <div class="input-group bootstrap-timepicker timepicker" style="width: 25%; margin: auto;"/>
+                      <input id="timepickerIni" type="text" class="form-control input-small text-center">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                      <div style="display:inline-block; margin:0 auto;">
+                        <div id="datepickerIni"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div class="form-group">
+                  <label class="control-label">E quando será ele finalizado?</label>
+                    <div class="input-group bootstrap-timepicker timepicker" style="width: 25%; margin: auto">
+                      <input id="timepickerFim" type="text" class="form-control input-small text-center">
+                      <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                    </div>
+                    <br />
+                    <div style="text-align:center;">
+                      <div style="display:inline-block; margin:0 auto;">
+                        <div id="datepickerFim"></div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+
+            <input type="hidden" name="date_initial" id="date_initial" value="nullTnull">
+            <input type="hidden" name="date_final" id="date_final" value="nullTnull">
+            <div class="form-group">
+              <label class="control-label">Qual o limite de participantes?</label>
+              <div class="eventoform">
+                <input name="max_participants" style="margin: auto;width: 25%" id="max_participants" class="form-control input-lg" type="number">
+              </div>
+            </div>
+
+            <label class="control-label">Escolha no mínimo uma imagem para ilustrar o seu evento</label>
+            <div class="wrapper">
+              <div class="row">
+                <div class="col-md-4 col-sm-12">
+                  <div class="box">
+                    <div id="ip1" class="js--image-preview"></div>
+                    <div class="upload-options">
+                      <label>
+                        <input name="image1" type="file" class="image-upload" accept="image/*" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                  <div class="box">
+                    <div id="ip2" class="js--image-preview"></div>
+                    <div class="upload-options">
+                      <label>
+                        <input name="image2" type="file" class="image-upload" accept="image/*" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div id="ip3" class="col-md-4 col-sm-12">
+                  <div class="box">
+                    <div class="js--image-preview"></div>
+                    <div class="upload-options">
+                      <label>
+                        <input name="image3" type="file" class="image-upload" accept="image/*" />
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="text-center">
+                <input id="editSubmit" class="btn btn-primary" value="Submeter" type="submit">
+                <span></span>
+              </div>
+            </div>
+          </form>
+        </div>
+    </div>
+  </section>
+  <hr>
+  <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+  <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+  <script src="{% static 'js/createevento.js' %}"></script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYyhwDmJRS3H4kKC6OWlZ25ELsD0Pww6Y&libraries=places&callback=initMap">
+  </script>
+
+  {% include "users/common/footer.html" %}
+</body>

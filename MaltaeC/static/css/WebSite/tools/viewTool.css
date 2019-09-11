@@ -1,0 +1,59 @@
+
+@font-face {
+    font-family: "encodeSans";
+    src: url(../../../users/fonts/EncodeSans-Light.ttf) format("truetype");
+}
+
+.container{
+	width: 80%;
+	margin: 0 auto;
+}
+
+#picContainer {
+  border-right: thin solid #F2F2F2;
+  text-align: center;
+}
+
+label{
+	
+	font-family: "encodeSans", Verdana, Tahoma;
+}
+
+#toolProfileContainer p,
+#toolProfileContainer a
+{
+	font-family: "encodeSans", Verdana, Tahoma;
+}
+
+#toolProfileContainer i
+{
+	position: relative;
+	top: 2px;
+}
+
+#userImg{
+	display: inline-block;
+}
+
+.title{
+	font-weight: normal !important;
+	font-size: 30px;
+}
+
+#toolInfo {
+  border-right: thin solid #F2F2F2;
+}
+ #toolMap {
+        height: 200px;
+        width: 100%;
+       }
+
+#userInfo {
+  position:relative;
+  right:1px;
+  border-left: thin solid #F2F2F2;
+}
+#toolImg{
+	display: block;
+	margin: auto;
+}

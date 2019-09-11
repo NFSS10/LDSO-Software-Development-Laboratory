@@ -1,0 +1,81 @@
+{% load staticfiles %}
+<html lang="en">
+
+<!-- Chamada dos headers comuns -->
+<head>
+  <!-- Chamada dos headers comuns -->
+  {% include "commonhead.html" %}
+</head>
+<body>
+
+  	{% include "users/common/header.html" %}
+  <section style="margin-left: 0px;">
+    <div class="container">
+      <h2>Página de gestão de eventos</h2>
+      <br />
+      <h3>Eventos a espera de aprovação</h3>
+      {% if events_notvalidated %}
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Evento</th>
+              <th>Local</th>
+              <th>Tipo</th>
+              <th>Autor</th>
+              <th>Mais</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events_notvalidated %}
+            <tr>
+              <td>{{event.name}}</td>
+              <td>{{event.local}}</td>
+              <td>{{event.type}}</td>
+              <td>{{event.creator.email}}</td>
+              <td><a href="../gerir_evento/{{event.id}}" class="btn">Ver mais</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+        {% else %}
+        <p>
+          Não existem eventos por validar
+        </p>
+      {% endif %}
+      <h3>Eventos aprovados</h3>
+      {% if events_validated %}
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Evento</th>
+              <th>Local</th>
+              <th>Tipo</th>
+              <th>Autor</th>
+              <th>Mais</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events_validated %}
+            <tr>
+              <td>{{event.name}}</td>
+              <td>{{event.local}}</td>
+              <td>{{event.type}}</td>
+              <td>{{event.creator.email}}</td>
+              <td><a href="../{{event.id}}" class="btn">Ver mais</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+        {% else %}
+        <p>
+          Ainda não foram aprovados nenhuns eventos
+        </p>
+      {% endif %}
+    </div>
+ </section>
+   {% include "users/common/footer.html" %}
+</body>
