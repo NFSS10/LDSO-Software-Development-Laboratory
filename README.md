@@ -5,7 +5,7 @@ Projects made in Software Development Laboratory class - MIEIC 4y1s
 This project had our team create a website for craftsman. The requirements were to have a database of craftsman, with each of the craftsman having a profile page with media and other personal information. The website should also have an store with a integrated payment system, search capabilities for the users to search by materials, region, city, craft, etc. An interactive map with all of the information specified until now, integrated in the map. Blog, events pages and users registration capabilities.
 This class had us organize in a small company with a scrum master, product owner and the rest of the team, as developers. Being that the time to do all of this was 2.5 months, I think that the fact that our team had all of the requirements done in that time, showed that the team is very capable and worth of trust when dealing with a great ammount of work. This class also showed that the client's need to be handled with care, as they don't have realistic expectations and don't always know what they want.
 
-1[](Images/maltaecompanhia_home.png)
+![](Images/maltaecompanhia_home.png)
 
 ## How to run
 First you need to install "python 3.6" and "MySQL".
