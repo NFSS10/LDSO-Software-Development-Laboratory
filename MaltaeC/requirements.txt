@@ -16,7 +16,7 @@ django-floppyforms==1.2.0
 
 django-model-utils==2.2
 
-Pillow==7.1.0
+Pillow==8.1.1
 
 django-allauth==0.18.0
 
